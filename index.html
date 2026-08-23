@@ -3,7 +3,6 @@
 <head>
   <meta charset="UTF-8">
   <meta name="viewport" content="width=device-width, initial-scale=1.0">
-
   <title>BattleZone Tournament</title>
 
   <style>
@@ -19,60 +18,61 @@
     }
 
     header {
-      background: linear-gradient(135deg, #ff8a00, #ff2600);
-      padding: 25px 18px;
       text-align: center;
+      padding: 25px 15px;
+      background: linear-gradient(135deg, #ff9800, #ff2600);
     }
 
     header h1 {
       margin: 0;
-      font-size: 32px;
+      font-size: 42px;
     }
 
     header p {
       margin: 8px 0 0;
-      opacity: 0.9;
+      font-size: 20px;
     }
 
     .container {
-      max-width: 600px;
+      max-width: 700px;
       margin: auto;
-      padding: 18px;
+      padding: 25px;
     }
 
     .card {
       background: #17171d;
-      border-radius: 15px;
-      padding: 18px;
-      margin-bottom: 18px;
-      border: 1px solid #292932;
+      border: 1px solid #303039;
+      border-radius: 22px;
+      padding: 25px;
+      margin-bottom: 25px;
     }
 
     h2 {
+      color: #ff9800;
       margin-top: 0;
-      color: #ff9d00;
     }
 
-    input {
+    input, select {
       width: 100%;
-      padding: 14px;
-      margin: 7px 0;
-      border-radius: 10px;
-      border: 1px solid #333;
-      background: #0f0f13;
+      padding: 18px;
+      margin: 10px 0;
+      background: #0d0d11;
       color: white;
-      font-size: 15px;
+      border: 1px solid #36363d;
+      border-radius: 15px;
+      font-size: 16px;
+      outline: none;
     }
 
     button {
       width: 100%;
-      padding: 14px;
-      margin-top: 10px;
+      padding: 18px;
+      margin-top: 12px;
       border: none;
-      border-radius: 10px;
-      background: linear-gradient(135deg, #ff9d00, #ff3d00);
+      border-radius: 15px;
+      background: linear-gradient(135deg, #ff9800, #ff3300);
       color: white;
-      font-size: 16px;
+      font-size: 18px;
       font-weight: bold;
       cursor: pointer;
     }
@@ -81,38 +81,18 @@
       transform: scale(0.98);
     }
 
-    .tournament {
-      background: #101015;
-      border: 1px solid #30303a;
-      border-radius: 12px;
-      padding: 15px;
-      margin-top: 12px;
-    }
-
-    .tournament h3 {
-      margin: 0 0 10px;
-      color: #fff;
-    }
-
-    .info {
-      color: #bbb;
-      line-height: 1.7;
+    #message {
+      text-align: center;
+      margin: 15px 0;
+      font-weight: bold;
     }
 
     .success {
-      color: #39ff88;
-      margin-top: 10px;
+      color: #00e676;
     }
 
     .error {
-      color: #ff5555;
-      margin-top: 10px;
-    }
-
-    footer {
-      text-align: center;
-      color: #777;
-      padding: 25px;
+      color: #ff5252;
     }
   </style>
 </head>
@@ -130,72 +110,67 @@
   <div class="card">
     <h2>🏆 Create Tournament</h2>
 
-    <input id="tournamentName" placeholder="Tournament Name">
+    <input id="tournamentName" type="text"
+      placeholder="Tournament Name">
 
-    <input id="gameName" placeholder="Game Name">
+    <input id="gameName" type="text"
+      placeholder="Game Name">
 
-    <input id="entryFee" type="number" placeholder="Entry Fee">
+    <input id="entryFee" type="number"
+      placeholder="Entry Fee">
 
-    <input id="prize" placeholder="Prize Pool">
+    <input id="prizePool" type="number"
+      placeholder="Prize Pool">
 
-    <input id="tournamentDate" type="date">
+    <select id="tournamentType">
+      <option value="">Select Tournament Type</option>
+      <option value="Solo">Solo</option>
+      <option value="Duo">Duo</option>
+      <option value="Squad">Squad</option>
+    </select>
 
     <button onclick="createTournament()">
       Create Tournament
     </button>
-
-    <div id="createMessage"></div>
   </div>
 
 
-  <!-- REGISTER PLAYER -->
+  <!-- PLAYER REGISTRATION -->
   <div class="card">
     <h2>👤 Player Registration</h2>
 
-    <input id="playerName" placeholder="Player Name">
+    <input id="playerName" type="text"
+      placeholder="Player Name">
 
-    <input id="playerUid" placeholder="Game UID">
+    <input id="gameUID" type="text"
+      placeholder="Game UID">
 
-    <input id="playerPhone" placeholder="Mobile Number">
+    <input id="mobileNumber" type="tel"
+      placeholder="Mobile Number">
 
     <button onclick="registerPlayer()">
       Register Player
     </button>
-
-    <div id="playerMessage"></div>
   </div>
 
-
-  <!-- TOURNAMENT LIST -->
-  <div class="card">
-    <h2>🔥 Available Tournaments</h2>
-
-    <div id="tournamentList">
-      Loading tournaments...
-    </div>
-  </div>
+  <div id="message"></div>
 
 </div>
-
-<footer>
-  © 2026 BattleZone
-</footer>
 
 
 <!-- FIREBASE -->
 <script type="module">
 
-  import { initializeApp } from
-  "https://www.gstatic.com/firebasejs/10.12.2/firebase-app.js";
+  import { initializeApp }
+  from "https://www.gstatic.com/firebasejs/10.12.2/firebase-app.js";
 
   import {
     getFirestore,
     collection,
     addDoc,
-    getDocs,
     serverTimestamp
-  } from
-  "https://www.gstatic.com/firebasejs/10.12.2/firebase-firestore.js";
+  }
+  from "https://www.gstatic.com/firebasejs/10.12.2/firebase-firestore.js";
 
 
   // YOUR FIREBASE CONFIG
@@ -209,37 +184,52 @@
   };
 
 
-  // INITIALIZE FIREBASE
+  // Firebase start
   const app = initializeApp(firebaseConfig);
-
   const db = getFirestore(app);
 
 
-  // CREATE TOURNAMENT
-  window.createTournament = async function () {
+  // MESSAGE
+  function showMessage(text, type) {
+    const message = document.getElementById("message");
 
-    const name =
+    message.innerText = text;
+    message.className = type;
+
+    setTimeout(() => {
+      message.innerText = "";
+      message.className = "";
+    }, 4000);
+  }
+
+
+  // CREATE TOURNAMENT
+  window.createTournament = async function() {
+
+    const tournamentName =
       document.getElementById("tournamentName").value.trim();
 
-    const game =
+    const gameName =
       document.getElementById("gameName").value.trim();
 
-    const fee =
-      document.getElementById("entryFee").value.trim();
+    const entryFee =
+      document.getElementById("entryFee").value;
 
-    const prize =
-      document.getElementById("prize").value.trim();
+    const prizePool =
+      document.getElementById("prizePool").value;
 
-    const date =
-      document.getElementById("tournamentDate").value.trim();
-
-    const message =
-      document.getElementById("createMessage");
+    const tournamentType =
+      document.getElementById("tournamentType").value;
 
 
-    if (!name || !game || !fee || !prize || !date) {
-      message.innerHTML =
-        '<div class="error">⚠️ Sabhi fields fill karo.</div>';
+    if (
+      !tournamentName ||
+      !gameName ||
+      !entryFee ||
+      !prizePool ||
+      !tournamentType
+    ) {
+      showMessage("❌ Sabhi details fill karo", "error");
       return;
     }
 
@@ -248,68 +238,61 @@
 
       await addDoc(collection(db, "tournaments"), {
 
-        name: name,
-
-        game: game,
-
-        entryFee: fee,
-
-        prize: prize,
-
-        date: date,
+        tournamentName: tournamentName,
+        gameName: gameName,
+        entryFee: Number(entryFee),
+        prizePool: Number(prizePool),
+        tournamentType: tournamentType,
 
         createdAt: serverTimestamp()
 
       });
 
 
-      message.innerHTML =
-        '<div class="success">✅ Tournament successfully created!</div>';
+      showMessage(
+        "✅ Tournament successfully create ho gaya!",
+        "success"
+      );
 
 
       document.getElementById("tournamentName").value = "";
       document.getElementById("gameName").value = "";
       document.getElementById("entryFee").value = "";
-      document.getElementById("prize").value = "";
-      document.getElementById("tournamentDate").value = "";
-
-
-      loadTournaments();
+      document.getElementById("prizePool").value = "";
+      document.getElementById("tournamentType").value = "";
 
     } catch (error) {
 
       console.error(error);
 
-      message.innerHTML =
-        '<div class="error">❌ Error: ' +
-        error.message +
-        '</div>';
+      showMessage(
+        "❌ Error: " + error.message,
+        "error"
+      );
 
     }
-
   };
 
 
-  // REGISTER PLAYER
-  window.registerPlayer = async function () {
+  // PLAYER REGISTRATION
+  window.registerPlayer = async function() {
 
-    const name =
+    const playerName =
       document.getElementById("playerName").value.trim();
 
-    const uid =
-      document.getElementById("playerUid").value.trim();
+    const gameUID =
+      document.getElementById("gameUID").value.trim();
 
-    const phone =
-      document.getElementById("playerPhone").value.trim();
-
-    const message =
-      document.getElementById("playerMessage");
+    const mobileNumber =
+      document.getElementById("mobileNumber").value.trim();
 
 
-    if (!name || !uid || !phone) {
+    if (!playerName || !gameUID || !mobileNumber) {
 
-      message.innerHTML =
-        '<div class="error">⚠️ Sabhi fields fill karo.</div>';
+      showMessage(
+        "❌ Sabhi player details fill karo",
+        "error"
+      );
 
       return;
     }
@@ -319,118 +302,40 @@
 
       await addDoc(collection(db, "players"), {
 
-        name: name,
+        playerName: playerName,
+        gameUID: gameUID,
+        mobileNumber: mobileNumber,
 
-        uid: uid,
-
-        phone: phone,
-
-        createdAt: serverTimestamp()
+        registeredAt: serverTimestamp()
 
       });
 
 
-      message.innerHTML =
-        '<div class="success">✅ Player registered successfully!</div>';
+      showMessage(
+        "✅ Player successfully register ho gaya!",
+        "success"
+      );
 
 
       document.getElementById("playerName").value = "";
-      document.getElementById("playerUid").value = "";
-      document.getElementById("playerPhone").value = "";
+      document.getElementById("gameUID").value = "";
+      document.getElementById("mobileNumber").value = "";
 
 
     } catch (error) {
 
       console.error(error);
 
-      message.innerHTML =
-        '<div class="error">❌ Error: ' +
-        error.message +
-        '</div>';
+      showMessage(
+        "❌ Error: " + error.message,
+        "error"
+      );
 
     }
 
   };
 
-
-  // LOAD TOURNAMENTS
-  async function loadTournaments() {
-
-    const list =
-      document.getElementById("tournamentList");
-
-
-    try {
-
-      const snapshot =
-        await getDocs(collection(db, "tournaments"));
-
-
-      if (snapshot.empty) {
-
-        list.innerHTML =
-          "Abhi koi tournament available nahi hai.";
-
-        return;
-
-      }
-
-
-      list.innerHTML = "";
-
-
-      snapshot.forEach((doc) => {
-
-        const data = doc.data();
-
-
-        const div =
-          document.createElement("div");
-
-
-        div.className = "tournament";
-
-
-        div.innerHTML = `
-
-          <h3>🏆 ${data.name || "Tournament"}</h3>
-
-          <div class="info">
-
-            🎮 Game: ${data.game || "-"}<br>
-
-            💰 Entry Fee: ₹${data.entryFee || "0"}<br>
-
-            🏆 Prize: ₹${data.prize || "0"}<br>
-
-            📅 Date: ${data.date || "-"}
-
-          </div>
-
-        `;
-
-
-        list.appendChild(div);
-
-      });
-
-
-    } catch (error) {
-
-      console.error(error);
-
-      list.innerHTML =
-        "❌ Tournament load nahi ho paaye.";
-
-    }
-
-  }
-
-
-  // START
-  loadTournaments();
-
 </script>
 
 </body>
-      </html>
+</html>
