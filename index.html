@@ -8,175 +8,219 @@
 
 <style>
 *{
-    box-sizing:border-box;
-    font-family:Arial,sans-serif;
+  box-sizing:border-box;
+  font-family:Arial,sans-serif;
 }
 
 body{
-    margin:0;
-    background:#08090d;
-    color:white;
+  margin:0;
+  background:#08080c;
+  color:white;
 }
 
 header{
-    background:linear-gradient(135deg,#ff9800,#ff1e00);
-    text-align:center;
-    padding:28px 15px;
+  text-align:center;
+  padding:30px 15px;
+  background:linear-gradient(135deg,#ff9800,#ff2d00);
 }
 
 header h1{
-    margin:0;
-    font-size:42px;
+  margin:0;
+  font-size:42px;
+  font-weight:800;
 }
 
 header p{
-    margin:8px 0 0;
-    font-size:22px;
+  margin:10px 0 0;
+  font-size:20px;
 }
 
 .container{
-    width:94%;
-    max-width:700px;
-    margin:25px auto;
+  width:95%;
+  max-width:700px;
+  margin:25px auto;
 }
 
 .card{
-    background:#17171e;
-    border:1px solid #303039;
-    border-radius:25px;
-    padding:25px;
-    margin-bottom:25px;
-    box-shadow:0 5px 20px rgba(0,0,0,.25);
+  background:#17171d;
+  border:1px solid #303039;
+  border-radius:25px;
+  padding:25px;
+  margin-bottom:25px;
+  box-shadow:0 5px 20px rgba(0,0,0,.35);
 }
 
-.title{
-    color:#ff9d00;
-    font-size:30px;
-    font-weight:bold;
-    margin-bottom:20px;
+.card h2{
+  margin-top:0;
+  color:#ff9800;
+  font-size:30px;
 }
 
-input,select{
-    width:100%;
-    padding:18px;
-    margin:8px 0;
-    border-radius:17px;
-    border:1px solid #3b3b45;
-    background:#0d0d12;
-    color:white;
-    font-size:18px;
-    outline:none;
+input,
+select{
+  width:100%;
+  padding:18px;
+  margin:10px 0;
+  border-radius:16px;
+  border:1px solid #38383f;
+  background:#0d0d11;
+  color:white;
+  font-size:18px;
+  outline:none;
 }
 
-input:focus,select:focus{
-    border-color:#ff9800;
+input:focus,
+select:focus{
+  border-color:#ff9800;
+}
+
+select option{
+  background:#17171d;
+  color:white;
 }
 
 button{
-    width:100%;
-    padding:18px;
-    margin-top:12px;
-    border:none;
-    border-radius:17px;
-    background:linear-gradient(135deg,#ff9800,#ff3000);
-    color:white;
-    font-size:20px;
-    font-weight:bold;
-    cursor:pointer;
+  width:100%;
+  padding:18px;
+  margin-top:12px;
+  border:0;
+  border-radius:16px;
+  background:linear-gradient(135deg,#ff9800,#ff2d00);
+  color:white;
+  font-size:20px;
+  font-weight:bold;
+  cursor:pointer;
 }
 
 button:active{
-    transform:scale(.98);
-}
-
-.small-btn{
-    padding:13px;
-    font-size:16px;
-}
-
-.tournament{
-    background:#101016;
-    border:1px solid #383842;
-    border-radius:22px;
-    padding:20px;
-    margin-top:18px;
-}
-
-.badge{
-    display:inline-block;
-    background:#3d3200;
-    color:#ffc107;
-    padding:8px 15px;
-    border-radius:20px;
-    font-size:14px;
-    margin-bottom:12px;
-}
-
-.tournament h3{
-    color:#ff9d00;
-    font-size:25px;
-    margin:5px 0 15px;
-}
-
-.info{
-    background:#1b1b23;
-    padding:13px;
-    margin:8px 0;
-    border-radius:14px;
-    font-size:17px;
-}
-
-.player{
-    background:#101016;
-    border:1px solid #383842;
-    border-radius:20px;
-    padding:18px;
-    margin-top:15px;
-}
-
-.player-name{
-    font-size:21px;
-    font-weight:bold;
-    margin-bottom:8px;
+  transform:scale(.98);
 }
 
 .message{
-    display:none;
-    padding:15px;
-    margin-bottom:20px;
-    border-radius:15px;
-    text-align:center;
-    font-weight:bold;
+  display:none;
+  padding:15px;
+  border-radius:12px;
+  margin-top:15px;
+  text-align:center;
+  font-weight:bold;
 }
 
 .success{
-    display:block;
-    background:#123d20;
-    color:#6cff8c;
+  background:#123d20;
+  color:#54ff88;
+  border:1px solid #278b46;
 }
 
 .error{
-    display:block;
-    background:#451414;
-    color:#ff7777;
+  background:#421515;
+  color:#ff7777;
+  border:1px solid #a33;
 }
 
-.loading{
-    text-align:center;
-    color:#aaa;
-    padding:15px;
+.tournament{
+  background:#0e0e13;
+  border:1px solid #36363f;
+  border-radius:20px;
+  padding:20px;
+  margin-top:15px;
+}
+
+.tournament h3{
+  color:#ff9800;
+  font-size:24px;
+  margin:10px 0 15px;
+}
+
+.badge{
+  display:inline-block;
+  background:#3d3000;
+  color:#ffc107;
+  padding:8px 14px;
+  border-radius:20px;
+  font-size:14px;
+  font-weight:bold;
+}
+
+.info{
+  background:#1b1b23;
+  border-radius:14px;
+  padding:13px;
+  margin:8px 0;
+  font-size:17px;
+}
+
+.player{
+  background:#0e0e13;
+  border:1px solid #36363f;
+  border-radius:20px;
+  padding:20px;
+  margin-top:15px;
+}
+
+.player h3{
+  margin:0 0 10px;
+  font-size:22px;
+}
+
+.player p{
+  margin:8px 0;
+  color:#ddd;
+  font-size:16px;
 }
 
 .empty{
-    text-align:center;
-    color:#888;
-    padding:20px;
+  text-align:center;
+  color:#999;
+  padding:20px;
 }
 
 footer{
-    text-align:center;
-    color:#777;
-    padding:30px 10px;
+  text-align:center;
+  color:#777;
+  padding:30px 10px;
+  font-size:15px;
+}
+
+.small{
+  color:#999;
+  font-size:14px;
+  margin-top:5px;
+}
+
+.loading{
+  text-align:center;
+  color:#aaa;
+  padding:15px;
+}
+
+@media(max-width:500px){
+
+  header h1{
+    font-size:34px;
+  }
+
+  header p{
+    font-size:17px;
+  }
+
+  .card{
+    padding:20px;
+    border-radius:20px;
+  }
+
+  .card h2{
+    font-size:27px;
+  }
+
+  input,
+  select{
+    font-size:16px;
+    padding:16px;
+  }
+
+  button{
+    font-size:18px;
+  }
 }
 </style>
 </head>
@@ -184,153 +228,144 @@ footer{
 <body>
 
 <header>
-    <h1>⚔️ BattleZone</h1>
-    <p>Ultimate Tournament Platform</p>
+  <h1>⚔️ BattleZone</h1>
+  <p>Ultimate Tournament Platform</p>
 </header>
 
 <div class="container">
 
-    <div id="message" class="message"></div>
+  <!-- CREATE TOURNAMENT -->
+  <div class="card">
 
-    <!-- CREATE TOURNAMENT -->
-    <div class="card">
+    <h2>🏆 Create Tournament</h2>
 
-        <div class="title">🏆 Create Tournament</div>
+    <input
+      type="text"
+      id="tournamentName"
+      placeholder="Tournament Name"
+    >
 
-        <input
-            id="tournamentName"
-            type="text"
-            placeholder="Tournament Name"
-        >
+    <input
+      type="text"
+      id="gameName"
+      placeholder="Game Name"
+    >
 
-        <input
-            id="gameName"
-            type="text"
-            placeholder="Game Name"
-        >
+    <input
+      type="number"
+      id="entryFee"
+      placeholder="Entry Fee"
+      min="0"
+    >
 
-        <input
-            id="entryFee"
-            type="number"
-            placeholder="Entry Fee"
-            min="0"
-        >
+    <input
+      type="number"
+      id="prizePool"
+      placeholder="Prize Pool"
+      min="0"
+    >
 
-        <input
-            id="prizePool"
-            type="number"
-            placeholder="Prize Pool"
-            min="0"
-        >
+    <select id="tournamentType">
+      <option value="">Select Tournament Type</option>
+      <option value="Solo">Solo</option>
+      <option value="Duo">Duo</option>
+      <option value="Squad">Squad</option>
+    </select>
 
-        <select id="tournamentType">
-            <option value="">Select Tournament Type</option>
-            <option value="Solo">Solo</option>
-            <option value="Duo">Duo</option>
-            <option value="Squad">Squad</option>
-        </select>
+    <button onclick="createTournament()">
+      Create Tournament
+    </button>
 
-        <button onclick="createTournament()">
-            Create Tournament
-        </button>
+    <div id="tournamentMessage" class="message"></div>
 
+  </div>
+
+
+  <!-- PLAYER REGISTRATION -->
+  <div class="card">
+
+    <h2>👤 Player Registration</h2>
+
+    <input
+      type="text"
+      id="playerName"
+      placeholder="Player Name"
+    >
+
+    <input
+      type="text"
+      id="gameUID"
+      placeholder="Game UID"
+    >
+
+    <input
+      type="tel"
+      id="mobileNumber"
+      placeholder="Mobile Number"
+      maxlength="10"
+    >
+
+    <select id="playerTournament">
+      <option value="">Select Tournament</option>
+    </select>
+
+    <button onclick="registerPlayer()">
+      Register Player
+    </button>
+
+    <div id="playerMessage" class="message"></div>
+
+  </div>
+
+
+  <!-- AVAILABLE TOURNAMENTS -->
+  <div class="card">
+
+    <h2>🎮 Available Tournaments</h2>
+
+    <div id="tournamentList" class="loading">
+      Loading tournaments...
     </div>
 
+  </div>
 
-    <!-- PLAYER REGISTRATION -->
-    <div class="card">
 
-        <div class="title">👤 Player Registration</div>
+  <!-- REGISTERED PLAYERS -->
+  <div class="card">
 
-        <input
-            id="playerName"
-            type="text"
-            placeholder="Player Name"
-        >
+    <h2>👥 Registered Players</h2>
 
-        <input
-            id="gameUID"
-            type="text"
-            placeholder="Game UID"
-        >
-
-        <input
-            id="mobileNumber"
-            type="tel"
-            placeholder="Mobile Number"
-        >
-
-        <button onclick="registerPlayer()">
-            Register Player
-        </button>
-
+    <div id="playerList" class="loading">
+      Loading players...
     </div>
 
-
-    <!-- AVAILABLE TOURNAMENTS -->
-    <div class="card">
-
-        <div class="title">🎮 Available Tournaments</div>
-
-        <div id="tournaments">
-            <div class="loading">
-                Loading tournaments...
-            </div>
-        </div>
-
-    </div>
-
-
-    <!-- REGISTERED PLAYERS -->
-    <div class="card">
-
-        <div class="title">👥 Registered Players</div>
-
-        <div id="players">
-            <div class="loading">
-                Loading players...
-            </div>
-        </div>
-
-    </div>
+  </div>
 
 </div>
 
+
 <footer>
-    © 2026 BattleZone Tournament Platform
+  © 2026 BattleZone Tournament Platform
 </footer>
 
 
-<script type="module">
+<!-- FIREBASE -->
+<script src="https://www.gstatic.com/firebasejs/10.12.2/firebase-app-compat.js"></script>
+<script src="https://www.gstatic.com/firebasejs/10.12.2/firebase-firestore-compat.js"></script>
 
-import { initializeApp }
-from "https://www.gstatic.com/firebasejs/10.12.2/firebase-app.js";
-
-import {
-    getFirestore,
-    collection,
-    addDoc,
-    getDocs,
-    doc,
-    getDoc,
-    updateDoc,
-    arrayUnion,
-    serverTimestamp
-}
-from "https://www.gstatic.com/firebasejs/10.12.2/firebase-firestore.js";
-
+<script>
 
 /* =========================================
    FIREBASE CONFIG
 ========================================= */
 
 const firebaseConfig = {
-    apiKey: "AIzaSyD3wpFyGO0x1aCblzlDey_qtT_Jvu7ZscY",
-    authDomain: "battlezone-ba07f.firebaseapp.com",
-    projectId: "battlezone-ba07f",
-    storageBucket: "battlezone-ba07f.firebasestorage.app",
-    messagingSenderId: "193110804088",
-    appId: "1:193110804088:web:6a1ddccc81cd785b1b4f8d"
+  apiKey: "AIzaSyD3wpFyGO0x1aCblzlDey_qtT_Jvu7ZscY",
+  authDomain: "battlezone-ba07f.firebaseapp.com",
+  projectId: "battlezone-ba07f",
+  storageBucket: "battlezone-ba07f.firebasestorage.app",
+  messagingSenderId: "193110804088",
+  appId: "1:193110804088:web:6a1ddccc81cd785b1b4f8d"
 };
 
 
@@ -338,30 +373,30 @@ const firebaseConfig = {
    INITIALIZE FIREBASE
 ========================================= */
 
-const app = initializeApp(firebaseConfig);
-const db = getFirestore(app);
+firebase.initializeApp(firebaseConfig);
+
+const db = firebase.firestore();
 
 
 /* =========================================
    MESSAGE FUNCTION
 ========================================= */
 
-function showMessage(text,type){
+function showMessage(elementId, text, type){
 
-    const message = document.getElementById("message");
+  const element = document.getElementById(elementId);
 
-    message.innerText = text;
+  element.innerText = text;
 
-    message.className = "message " + type;
+  element.className = "message " + type;
 
-    window.scrollTo({
-        top:0,
-        behavior:"smooth"
-    });
+  element.style.display = "block";
 
-    setTimeout(()=>{
-        message.style.display = "none";
-    },4000);
+  setTimeout(function(){
+
+    element.style.display = "none";
+
+  },5000);
 }
 
 
@@ -369,629 +404,528 @@ function showMessage(text,type){
    CREATE TOURNAMENT
 ========================================= */
 
-window.createTournament = async function(){
+async function createTournament(){
 
-    const tournamentName =
-        document.getElementById("tournamentName").value.trim();
+  const tournamentName =
+    document.getElementById("tournamentName").value.trim();
 
-    const gameName =
-        document.getElementById("gameName").value.trim();
+  const gameName =
+    document.getElementById("gameName").value.trim();
 
-    const entryFee =
-        document.getElementById("entryFee").value.trim();
+  const entryFee =
+    document.getElementById("entryFee").value.trim();
 
-    const prizePool =
-        document.getElementById("prizePool").value.trim();
+  const prizePool =
+    document.getElementById("prizePool").value.trim();
 
-    const tournamentType =
-        document.getElementById("tournamentType").value;
-
-
-    if(
-        !tournamentName ||
-        !gameName ||
-        !entryFee ||
-        !prizePool ||
-        !tournamentType
-    ){
-
-        showMessage(
-            "❌ Please fill all tournament details.",
-            "error"
-        );
-
-        return;
-    }
+  const tournamentType =
+    document.getElementById("tournamentType").value;
 
 
-    try{
+  /* VALIDATION */
 
-        await addDoc(
-            collection(db,"tournaments"),
-            {
+  if(!tournamentName){
 
-                tournamentName:tournamentName,
+    showMessage(
+      "tournamentMessage",
+      "❌ Tournament Name enter karo!",
+      "error"
+    );
 
-                gameName:gameName,
-
-                entryFee:Number(entryFee),
-
-                prizePool:Number(prizePool),
-
-                tournamentType:tournamentType,
-
-                players:[],
-
-                createdAt:serverTimestamp()
-
-            }
-        );
+    return;
+  }
 
 
-        showMessage(
-            "✅ Tournament successfully create ho gaya!",
-            "success"
-        );
+  if(!gameName){
+
+    showMessage(
+      "tournamentMessage",
+      "❌ Game Name enter karo!",
+      "error"
+    );
+
+    return;
+  }
 
 
-        document.getElementById("tournamentName").value="";
-        document.getElementById("gameName").value="";
-        document.getElementById("entryFee").value="";
-        document.getElementById("prizePool").value="";
-        document.getElementById("tournamentType").value="";
+  if(entryFee === ""){
+
+    showMessage(
+      "tournamentMessage",
+      "❌ Entry Fee enter karo!",
+      "error"
+    );
+
+    return;
+  }
 
 
-        loadTournaments();
+  if(prizePool === ""){
 
-    }
+    showMessage(
+      "tournamentMessage",
+      "❌ Prize Pool enter karo!",
+      "error"
+    );
 
-    catch(error){
+    return;
+  }
 
-        console.error(error);
 
-        showMessage(
-            "❌ Error: " + error.message,
-            "error"
-        );
+  if(!tournamentType){
 
-    }
+    showMessage(
+      "tournamentMessage",
+      "❌ Tournament Type select karo!",
+      "error"
+    );
 
-};
+    return;
+  }
+
+
+  try{
+
+    await db.collection("tournaments").add({
+
+      tournamentName: tournamentName,
+
+      gameName: gameName,
+
+      entryFee: Number(entryFee),
+
+      prizePool: Number(prizePool),
+
+      tournamentType: tournamentType,
+
+      createdAt: firebase.firestore.FieldValue.serverTimestamp()
+
+    });
+
+
+    showMessage(
+      "tournamentMessage",
+      "✅ Tournament successfully create ho gaya!",
+      "success"
+    );
+
+
+    /* CLEAR FORM */
+
+    document.getElementById("tournamentName").value = "";
+
+    document.getElementById("gameName").value = "";
+
+    document.getElementById("entryFee").value = "";
+
+    document.getElementById("prizePool").value = "";
+
+    document.getElementById("tournamentType").value = "";
+
+  }
+
+  catch(error){
+
+    console.error(error);
+
+    showMessage(
+      "tournamentMessage",
+      "❌ Error: " + error.message,
+      "error"
+    );
+
+  }
+
+}
 
 
 /* =========================================
    REGISTER PLAYER
 ========================================= */
 
-window.registerPlayer = async function(){
+async function registerPlayer(){
 
-    const playerName =
-        document.getElementById("playerName").value.trim();
+  const playerName =
+    document.getElementById("playerName").value.trim();
 
-    const gameUID =
-        document.getElementById("gameUID").value.trim();
+  const gameUID =
+    document.getElementById("gameUID").value.trim();
 
-    const mobileNumber =
-        document.getElementById("mobileNumber").value.trim();
+  const mobileNumber =
+    document.getElementById("mobileNumber").value.trim();
+
+  const tournamentId =
+    document.getElementById("playerTournament").value;
 
 
-    if(
-        !playerName ||
-        !gameUID ||
-        !mobileNumber
-    ){
+  /* VALIDATION */
 
-        showMessage(
-            "❌ Please fill all player details.",
-            "error"
-        );
+  if(!playerName){
 
-        return;
+    showMessage(
+      "playerMessage",
+      "❌ Player Name enter karo!",
+      "error"
+    );
+
+    return;
+  }
+
+
+  if(!gameUID){
+
+    showMessage(
+      "playerMessage",
+      "❌ Game UID enter karo!",
+      "error"
+    );
+
+    return;
+  }
+
+
+  if(!mobileNumber){
+
+    showMessage(
+      "playerMessage",
+      "❌ Mobile Number enter karo!",
+      "error"
+    );
+
+    return;
+  }
+
+
+  if(!/^[0-9]{10}$/.test(mobileNumber)){
+
+    showMessage(
+      "playerMessage",
+      "❌ 10 digit mobile number enter karo!",
+      "error"
+    );
+
+    return;
+  }
+
+
+  if(!tournamentId){
+
+    showMessage(
+      "playerMessage",
+      "❌ Tournament select karo!",
+      "error"
+    );
+
+    return;
+  }
+
+
+  try{
+
+    /* GET TOURNAMENT */
+
+    const tournamentDoc =
+      await db.collection("tournaments")
+      .doc(tournamentId)
+      .get();
+
+
+    if(!tournamentDoc.exists){
+
+      showMessage(
+        "playerMessage",
+        "❌ Tournament nahi mila!",
+        "error"
+      );
+
+      return;
     }
 
 
-    try{
-
-        await addDoc(
-            collection(db,"players"),
-            {
-
-                playerName:playerName,
-
-                gameUID:gameUID,
-
-                mobileNumber:mobileNumber,
-
-                registeredAt:serverTimestamp()
-
-            }
-        );
+    const tournament =
+      tournamentDoc.data();
 
 
-        showMessage(
-            "✅ Player successfully register ho gaya!",
-            "success"
-        );
+    /* SAVE PLAYER */
+
+    await db.collection("players").add({
+
+      playerName: playerName,
+
+      gameUID: gameUID,
+
+      mobileNumber: mobileNumber,
+
+      tournamentId: tournamentId,
+
+      tournamentName:
+        tournament.tournamentName || "",
+
+      gameName:
+        tournament.gameName || "",
+
+      registeredAt:
+        firebase.firestore.FieldValue.serverTimestamp()
+
+    });
 
 
-        document.getElementById("playerName").value="";
-        document.getElementById("gameUID").value="";
-        document.getElementById("mobileNumber").value="";
+    showMessage(
+      "playerMessage",
+      "✅ Player successfully register ho gaya!",
+      "success"
+    );
 
 
-        loadPlayers();
+    /* CLEAR FORM */
 
-    }
+    document.getElementById("playerName").value = "";
 
-    catch(error){
+    document.getElementById("gameUID").value = "";
 
-        console.error(error);
+    document.getElementById("mobileNumber").value = "";
 
-        showMessage(
-            "❌ Error: " + error.message,
-            "error"
-        );
+    document.getElementById("playerTournament").value = "";
 
-    }
+  }
 
-};
+  catch(error){
+
+    console.error(error);
+
+    showMessage(
+      "playerMessage",
+      "❌ Error: " + error.message,
+      "error"
+    );
+
+  }
+
+}
 
 
 /* =========================================
    LOAD TOURNAMENTS
 ========================================= */
 
-async function loadTournaments(){
+function loadTournaments(){
 
-    const container =
-        document.getElementById("tournaments");
+  db.collection("tournaments")
+    .orderBy("createdAt","desc")
+    .onSnapshot(
 
-    container.innerHTML =
-        '<div class="loading">Loading tournaments...</div>';
+      function(snapshot){
+
+        const list =
+          document.getElementById("tournamentList");
+
+        const select =
+          document.getElementById("playerTournament");
 
 
-    try{
+        list.innerHTML = "";
 
-        const snapshot =
-            await getDocs(
-                collection(db,"tournaments")
-            );
+        select.innerHTML =
+          '<option value="">Select Tournament</option>';
 
 
         if(snapshot.empty){
 
-            container.innerHTML =
-                '<div class="empty">No tournaments available.</div>';
+          list.innerHTML =
+            '<div class="empty">No tournaments available.</div>';
 
-            return;
+          return;
         }
 
 
-        container.innerHTML="";
+        snapshot.forEach(function(doc){
+
+          const data = doc.data();
 
 
-        snapshot.forEach((item)=>{
+          /* TOURNAMENT CARD */
 
-            const data = item.data();
+          const card =
+            document.createElement("div");
 
-            const tournamentId = item.id;
-
-            const players =
-                Array.isArray(data.players)
-                ? data.players
-                : [];
+          card.className = "tournament";
 
 
-            const div =
-                document.createElement("div");
+          card.innerHTML = `
 
-            div.className="tournament";
+            <span class="badge">
+              ${escapeHTML(data.tournamentType || "Tournament")}
+            </span>
 
+            <h3>
+              🏆 ${escapeHTML(data.tournamentName || "Tournament")}
+            </h3>
 
-            div.innerHTML = `
+            <div class="info">
+              🎮 Game:
+              <b>${escapeHTML(data.gameName || "-")}</b>
+            </div>
 
-                <span class="badge">
-                    ${escapeHTML(data.tournamentType || "Tournament")}
-                </span>
+            <div class="info">
+              💰 Entry:
+              <b>₹${data.entryFee ?? 0}</b>
+            </div>
 
-                <h3>
-                    🏆 ${escapeHTML(data.tournamentName || "Tournament")}
-                </h3>
+            <div class="info">
+              🏆 Prize:
+              <b>₹${data.prizePool ?? 0}</b>
+            </div>
 
-                <div class="info">
-                    🎮 Game:
-                    <b>${escapeHTML(data.gameName || "-")}</b>
-                </div>
+            <div class="info">
+              👥 Type:
+              <b>${escapeHTML(data.tournamentType || "-")}</b>
+            </div>
 
-                <div class="info">
-                    💰 Entry:
-                    <b>₹${data.entryFee ?? 0}</b>
-                </div>
-
-                <div class="info">
-                    🏆 Prize:
-                    <b>₹${data.prizePool ?? 0}</b>
-                </div>
-
-                <div class="info">
-                    👥 Joined Players:
-                    <b>${players.length}</b>
-                </div>
-
-                <button
-                    class="small-btn"
-                    onclick="joinTournament('${tournamentId}')"
-                >
-                    🎮 Join Tournament
-                </button>
-
-                <button
-                    class="small-btn"
-                    onclick="viewPlayers('${tournamentId}')"
-                >
-                    👥 View Joined Players
-                </button>
-
-                <div
-                    id="joined-${tournamentId}"
-                    style="display:none;margin-top:15px"
-                ></div>
-
-            `;
+          `;
 
 
-            container.appendChild(div);
+          list.appendChild(card);
+
+
+          /* DROPDOWN OPTION */
+
+          const option =
+            document.createElement("option");
+
+          option.value = doc.id;
+
+          option.textContent =
+            `${data.tournamentName || "Tournament"} - ${data.gameName || ""}`;
+
+
+          select.appendChild(option);
 
         });
 
-    }
+      },
 
-    catch(error){
+      function(error){
 
         console.error(error);
 
-        container.innerHTML =
-            '<div class="empty">Unable to load tournaments.</div>';
+        document.getElementById("tournamentList").innerHTML =
+          '<div class="empty">❌ Tournament load nahi ho pa raha.</div>';
 
-    }
+      }
+
+    );
 
 }
 
 
 /* =========================================
-   JOIN TOURNAMENT
+   LOAD PLAYERS
 ========================================= */
 
-window.joinTournament = async function(tournamentId){
+function loadPlayers(){
 
-    const playerName =
-        document.getElementById("playerName").value.trim();
+  db.collection("players")
+    .orderBy("registeredAt","desc")
+    .onSnapshot(
 
-    const gameUID =
-        document.getElementById("gameUID").value.trim();
+      function(snapshot){
 
-    const mobileNumber =
-        document.getElementById("mobileNumber").value.trim();
+        const list =
+          document.getElementById("playerList");
 
 
-    if(!playerName || !gameUID || !mobileNumber){
-
-        showMessage(
-            "❌ Pehle Player Registration me Name, Game UID aur Mobile Number bharo.",
-            "error"
-        );
-
-        return;
-    }
-
-
-    try{
-
-        const tournamentRef =
-            doc(db,"tournaments",tournamentId);
-
-        const tournamentSnap =
-            await getDoc(tournamentRef);
-
-
-        if(!tournamentSnap.exists()){
-
-            showMessage(
-                "❌ Tournament nahi mila.",
-                "error"
-            );
-
-            return;
-        }
-
-
-        const tournamentData =
-            tournamentSnap.data();
-
-
-        let players =
-            Array.isArray(tournamentData.players)
-            ? tournamentData.players
-            : [];
-
-
-        /* DUPLICATE CHECK */
-
-        const alreadyJoined =
-            players.some(
-                player =>
-                    player.gameUID === gameUID
-            );
-
-
-        if(alreadyJoined){
-
-            showMessage(
-                "⚠️ Ye Game UID already tournament me joined hai.",
-                "error"
-            );
-
-            return;
-        }
-
-
-        const newPlayer = {
-
-            playerName:playerName,
-
-            gameUID:gameUID,
-
-            mobileNumber:mobileNumber,
-
-            joinedAt:new Date().toISOString()
-
-        };
-
-
-        await updateDoc(
-            tournamentRef,
-            {
-                players:arrayUnion(newPlayer)
-            }
-        );
-
-
-        showMessage(
-            "✅ Tournament successfully join ho gaya!",
-            "success"
-        );
-
-
-        loadTournaments();
-
-    }
-
-    catch(error){
-
-        console.error(error);
-
-        showMessage(
-            "❌ Join Error: " + error.message,
-            "error"
-        );
-
-    }
-
-};
-
-
-/* =========================================
-   VIEW JOINED PLAYERS
-========================================= */
-
-window.viewPlayers = async function(tournamentId){
-
-    const box =
-        document.getElementById(
-            "joined-" + tournamentId
-        );
-
-
-    if(box.style.display === "block"){
-
-        box.style.display="none";
-
-        return;
-    }
-
-
-    box.style.display="block";
-
-    box.innerHTML =
-        '<div class="loading">Loading players...</div>';
-
-
-    try{
-
-        const tournamentRef =
-            doc(db,"tournaments",tournamentId);
-
-        const snapshot =
-            await getDoc(tournamentRef);
-
-
-        if(!snapshot.exists()){
-
-            box.innerHTML =
-                '<div class="empty">Tournament not found.</div>';
-
-            return;
-        }
-
-
-        const data =
-            snapshot.data();
-
-
-        const players =
-            Array.isArray(data.players)
-            ? data.players
-            : [];
-
-
-        if(players.length === 0){
-
-            box.innerHTML =
-                '<div class="empty">Abhi koi player joined nahi hai.</div>';
-
-            return;
-        }
-
-
-        box.innerHTML="";
-
-
-        players.forEach((player,index)=>{
-
-            const div =
-                document.createElement("div");
-
-            div.className="player";
-
-
-            div.innerHTML = `
-
-                <div class="player-name">
-                    👤 #${index + 1}
-                    ${escapeHTML(player.playerName || "-")}
-                </div>
-
-                <div>
-                    🎮 Game UID:
-                    ${escapeHTML(player.gameUID || "-")}
-                </div>
-
-                <div>
-                    📱 Mobile:
-                    ${escapeHTML(player.mobileNumber || "-")}
-                </div>
-
-            `;
-
-
-            box.appendChild(div);
-
-        });
-
-    }
-
-    catch(error){
-
-        console.error(error);
-
-        box.innerHTML =
-            '<div class="empty">Unable to load players.</div>';
-
-    }
-
-};
-
-
-/* =========================================
-   LOAD ALL REGISTERED PLAYERS
-========================================= */
-
-async function loadPlayers(){
-
-    const container =
-        document.getElementById("players");
-
-    container.innerHTML =
-        '<div class="loading">Loading players...</div>';
-
-
-    try{
-
-        const snapshot =
-            await getDocs(
-                collection(db,"players")
-            );
+        list.innerHTML = "";
 
 
         if(snapshot.empty){
 
-            container.innerHTML =
-                '<div class="empty">No registered players.</div>';
+          list.innerHTML =
+            '<div class="empty">No players registered.</div>';
 
-            return;
+          return;
         }
 
 
-        container.innerHTML="";
+        snapshot.forEach(function(doc){
+
+          const data =
+            doc.data();
 
 
-        snapshot.forEach((item)=>{
+          const card =
+            document.createElement("div");
 
-            const data =
-                item.data();
-
-
-            const div =
-                document.createElement("div");
-
-            div.className="player";
+          card.className = "player";
 
 
-            div.innerHTML = `
+          card.innerHTML = `
 
-                <div class="player-name">
-                    👤 ${escapeHTML(data.playerName || "-")}
-                </div>
+            <h3>
+              👤 ${escapeHTML(data.playerName || "Player")}
+            </h3>
 
-                <div>
-                    🎮 Game UID:
-                    ${escapeHTML(data.gameUID || "-")}
-                </div>
+            <p>
+              🎮 Game UID:
+              <b>${escapeHTML(data.gameUID || "-")}</b>
+            </p>
 
-                <div>
-                    📱 Mobile:
-                    ${escapeHTML(data.mobileNumber || "-")}
-                </div>
+            <p>
+              🏆 Tournament:
+              <b>${escapeHTML(data.tournamentName || "-")}</b>
+            </p>
 
-            `;
+            <p>
+              🎮 Game:
+              <b>${escapeHTML(data.gameName || "-")}</b>
+            </p>
+
+            <p>
+              📱 Mobile:
+              <b>${escapeHTML(data.mobileNumber || "-")}</b>
+            </p>
+
+          `;
 
 
-            container.appendChild(div);
+          list.appendChild(card);
 
         });
 
-    }
+      },
 
-    catch(error){
+      function(error){
 
         console.error(error);
 
-        container.innerHTML =
-            '<div class="empty">Unable to load players.</div>';
+        document.getElementById("playerList").innerHTML =
+          '<div class="empty">❌ Players load nahi ho rahe.</div>';
 
-    }
+      }
+
+    );
 
 }
 
 
 /* =========================================
-   SECURITY: ESCAPE HTML
+   SECURITY HELPER
 ========================================= */
 
 function escapeHTML(value){
 
-    return String(value)
-        .replaceAll("&","&amp;")
-        .replaceAll("<","&lt;")
-        .replaceAll(">","&gt;")
-        .replaceAll('"',"&quot;")
-        .replaceAll("'","&#039;");
+  const div =
+    document.createElement("div");
+
+  div.textContent =
+    String(value);
+
+  return div.innerHTML;
 
 }
 
 
 /* =========================================
-   START APP
+   START
 ========================================= */
 
 loadTournaments();
@@ -1001,4 +935,4 @@ loadPlayers();
 </script>
 
 </body>
-  </html>
+</html>
