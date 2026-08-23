@@ -1,11 +1,14 @@
 <!DOCTYPE html>
 <html lang="en">
-
 <head>
   <meta charset="UTF-8">
   <meta name="viewport" content="width=device-width, initial-scale=1.0">
 
   <title>BattleZone Tournament</title>
+
+  <!-- Firebase -->
+  <script src="https://www.gstatic.com/firebasejs/10.14.1/firebase-app-compat.js"></script>
+  <script src="https://www.gstatic.com/firebasejs/10.14.1/firebase-firestore-compat.js"></script>
 
   <style>
     * {
@@ -16,39 +19,41 @@
     }
 
     body {
-      background: #08090d;
+      background: #08080d;
       color: white;
       min-height: 100vh;
     }
 
     header {
-      background: linear-gradient(135deg, #ff9800, #ff2400);
-      padding: 30px 15px;
+      background: linear-gradient(135deg, #ff9800, #ff2600);
       text-align: center;
+      padding: 28px 15px;
+      box-shadow: 0 5px 20px rgba(255, 80, 0, 0.25);
     }
 
     header h1 {
       font-size: 42px;
-      margin-bottom: 8px;
+      font-weight: 800;
     }
 
     header p {
+      margin-top: 8px;
       font-size: 20px;
     }
 
     .container {
       width: 95%;
-      max-width: 800px;
+      max-width: 900px;
       margin: 25px auto;
     }
 
     .card {
-      background: #17171d;
-      border: 1px solid #2d2d35;
+      background: #15151c;
+      border: 1px solid #30303a;
       border-radius: 22px;
       padding: 25px;
       margin-bottom: 25px;
-      box-shadow: 0 5px 20px rgba(0,0,0,0.3);
+      box-shadow: 0 10px 30px rgba(0,0,0,0.25);
     }
 
     .card h2 {
@@ -60,13 +65,13 @@
     input,
     select {
       width: 100%;
-      padding: 18px;
+      padding: 17px;
       margin-bottom: 15px;
+      border-radius: 15px;
+      border: 1px solid #393943;
       background: #0d0d12;
       color: white;
-      border: 1px solid #38383f;
-      border-radius: 15px;
-      font-size: 17px;
+      font-size: 16px;
       outline: none;
     }
 
@@ -76,110 +81,132 @@
     }
 
     select option {
-      background: #17171d;
+      background: #111118;
       color: white;
     }
 
     button {
       width: 100%;
-      padding: 18px;
+      padding: 17px;
       border: none;
       border-radius: 15px;
-      background: linear-gradient(135deg, #ff9800, #ff3d00);
+      background: linear-gradient(135deg, #ffad00, #ff3200);
       color: white;
       font-size: 18px;
       font-weight: bold;
       cursor: pointer;
+      transition: 0.2s;
     }
 
     button:hover {
-      opacity: 0.9;
+      transform: scale(1.01);
     }
 
-    button:disabled {
-      opacity: 0.6;
-      cursor: not-allowed;
+    button:active {
+      transform: scale(0.98);
     }
 
     .message {
       display: none;
       padding: 15px;
       border-radius: 12px;
-      margin-bottom: 20px;
-      text-align: center;
+      margin-bottom: 15px;
       font-weight: bold;
+      text-align: center;
     }
 
     .success {
       display: block;
-      background: #123d20;
-      border: 1px solid #20a94b;
-      color: #7dff9e;
+      background: #123d24;
+      color: #61ff9b;
+      border: 1px solid #216c3e;
     }
 
     .error {
       display: block;
-      background: #421616;
-      border: 1px solid #e53935;
-      color: #ff8a8a;
+      background: #431818;
+      color: #ff7777;
+      border: 1px solid #7b2929;
     }
 
-    .item {
-      background: #0d0d12;
-      border: 1px solid #303039;
-      border-radius: 15px;
+    .tournament {
+      background: #0e0e14;
+      border: 1px solid #30303b;
+      border-radius: 17px;
       padding: 18px;
       margin-bottom: 15px;
     }
 
-    .item h3 {
-      color: #ff9800;
-      margin-bottom: 10px;
+    .tournament h3 {
+      color: #ff9d00;
+      font-size: 21px;
+      margin-bottom: 12px;
     }
 
-    .item p {
+    .info {
+      display: grid;
+      grid-template-columns: 1fr 1fr;
+      gap: 8px;
+      margin-top: 10px;
+    }
+
+    .info div {
+      background: #181820;
+      padding: 10px;
+      border-radius: 10px;
       color: #ddd;
-      margin: 6px 0;
-      line-height: 1.5;
+      font-size: 14px;
     }
 
     .badge {
       display: inline-block;
       padding: 6px 10px;
-      border-radius: 8px;
-      background: #252530;
-      color: #ffb52e;
-      font-size: 13px;
+      border-radius: 20px;
+      background: #29200c;
+      color: #ffb300;
+      font-size: 12px;
+      margin-bottom: 8px;
+    }
+
+    .player {
+      background: #0e0e14;
+      border: 1px solid #30303b;
+      border-radius: 15px;
+      padding: 16px;
+      margin-bottom: 12px;
+    }
+
+    .player h3 {
+      color: #fff;
+      margin-bottom: 8px;
+    }
+
+    .player p {
+      color: #bbb;
+      font-size: 14px;
       margin-top: 5px;
     }
 
     .empty {
       text-align: center;
-      color: #999;
+      color: #888;
       padding: 20px;
     }
 
     .loading {
       text-align: center;
-      color: #ff9800;
-      padding: 20px;
-    }
-
-    .refresh-btn {
-      margin-top: 5px;
-      background: #24242c;
-      border: 1px solid #3c3c45;
+      color: #ffad00;
+      padding: 15px;
     }
 
     footer {
       text-align: center;
       color: #777;
-      padding: 25px;
+      padding: 30px 15px;
       font-size: 14px;
     }
 
-    @media (max-width: 500px) {
-
+    @media (max-width: 600px) {
       header h1 {
         font-size: 34px;
       }
@@ -190,23 +217,18 @@
 
       .card {
         padding: 18px;
-        border-radius: 18px;
       }
 
       .card h2 {
         font-size: 24px;
       }
 
-      input,
-      select,
-      button {
-        font-size: 16px;
-        padding: 16px;
+      .info {
+        grid-template-columns: 1fr;
       }
     }
   </style>
 </head>
-
 
 <body>
 
@@ -216,12 +238,10 @@
     <p>Ultimate Tournament Platform</p>
   </header>
 
-
   <div class="container">
 
     <!-- MESSAGE -->
-    <div id="messageBox" class="message"></div>
-
+    <div id="message" class="message"></div>
 
     <!-- CREATE TOURNAMENT -->
     <div class="card">
@@ -260,10 +280,11 @@
         <option value="Duo">Duo</option>
         <option value="Squad">Squad</option>
         <option value="1v1">1 vs 1</option>
-        <option value="Custom">Custom</option>
+        <option value="2v2">2 vs 2</option>
+        <option value="4v4">4 vs 4</option>
       </select>
 
-      <button id="createTournamentBtn">
+      <button onclick="createTournament()">
         Create Tournament
       </button>
 
@@ -274,6 +295,10 @@
     <div class="card">
 
       <h2>👤 Player Registration</h2>
+
+      <select id="playerTournament">
+        <option value="">Select Tournament</option>
+      </select>
 
       <input
         type="text"
@@ -294,17 +319,17 @@
         maxlength="10"
       >
 
-      <button id="registerPlayerBtn">
+      <button onclick="registerPlayer()">
         Register Player
       </button>
 
     </div>
 
 
-    <!-- TOURNAMENT LIST -->
+    <!-- TOURNAMENTS -->
     <div class="card">
 
-      <h2>🏆 Available Tournaments</h2>
+      <h2>🎮 Available Tournaments</h2>
 
       <div id="tournamentList">
         <div class="loading">
@@ -312,17 +337,10 @@
         </div>
       </div>
 
-      <button
-        class="refresh-btn"
-        id="refreshTournamentsBtn"
-      >
-        🔄 Refresh Tournaments
-      </button>
-
     </div>
 
 
-    <!-- PLAYER LIST -->
+    <!-- PLAYERS -->
     <div class="card">
 
       <h2>👥 Registered Players</h2>
@@ -332,13 +350,6 @@
           Loading players...
         </div>
       </div>
-
-      <button
-        class="refresh-btn"
-        id="refreshPlayersBtn"
-      >
-        🔄 Refresh Players
-      </button>
 
     </div>
 
@@ -350,81 +361,42 @@
   </footer>
 
 
+  <script>
 
-  <!-- FIREBASE -->
-  <script type="module">
-
-    import {
-      initializeApp
-    } from "https://www.gstatic.com/firebasejs/10.12.2/firebase-app.js";
-
-    import {
-      getFirestore,
-      collection,
-      addDoc,
-      getDocs,
-      serverTimestamp,
-      query,
-      orderBy
-    } from "https://www.gstatic.com/firebasejs/10.12.2/firebase-firestore.js";
-
-
-    /*
-      =====================================================
-      🔥 FIREBASE CONFIG
-      =====================================================
-
-      IMPORTANT:
-
-      Neeche apne Firebase project ka config paste karo.
-
-      Firebase Console:
-      Project Settings
-      → General
-      → Your apps
-      → Web app
-      → Firebase SDK snippet
-      → Config
-    */
+    // =========================================================
+    // FIREBASE CONFIG
+    // =========================================================
 
     const firebaseConfig = {
-
-      apiKey: "YOUR_API_KEY",
-
-      authDomain: "YOUR_PROJECT.firebaseapp.com",
-
-      projectId: "YOUR_PROJECT_ID",
-
-      storageBucket: "YOUR_PROJECT.firebasestorage.app",
-
-      messagingSenderId: "YOUR_SENDER_ID",
-
-      appId: "YOUR_APP_ID"
-
+      apiKey: "AIzaSyD3wpFyGO0x1aCblzlDey_qtT_Jvu7ZscY",
+      authDomain: "battlezone-ba07f.firebaseapp.com",
+      projectId: "battlezone-ba07f",
+      storageBucket: "battlezone-ba07f.firebasestorage.app",
+      messagingSenderId: "193110804088",
+      appId: "1:193110804088:web:6a1ddccc81cd785b1b4f8d"
     };
 
 
-    // Firebase initialize
-    const app = initializeApp(firebaseConfig);
+    // =========================================================
+    // FIREBASE INITIALIZE
+    // =========================================================
 
-    // Firestore
-    const db = getFirestore(app);
+    firebase.initializeApp(firebaseConfig);
+
+    const db = firebase.firestore();
 
 
-
-    // =====================================================
+    // =========================================================
     // MESSAGE FUNCTION
-    // =====================================================
+    // =========================================================
 
-    function showMessage(message, type) {
+    function showMessage(text, type) {
 
-      const box =
-        document.getElementById("messageBox");
+      const message = document.getElementById("message");
 
-      box.textContent = message;
+      message.innerText = text;
 
-      box.className =
-        "message " + type;
+      message.className = "message " + type;
 
       window.scrollTo({
         top: 0,
@@ -432,106 +404,79 @@
       });
 
       setTimeout(function() {
-
-        box.className = "message";
-
-        box.textContent = "";
-
+        message.className = "message";
       }, 4000);
     }
 
 
-
-    // =====================================================
+    // =========================================================
     // CREATE TOURNAMENT
-    // =====================================================
+    // =========================================================
 
     async function createTournament() {
 
-      const button =
-        document.getElementById("createTournamentBtn");
-
       const tournamentName =
-        document
-          .getElementById("tournamentName")
-          .value
-          .trim();
+        document.getElementById("tournamentName").value.trim();
 
       const gameName =
-        document
-          .getElementById("gameName")
-          .value
-          .trim();
+        document.getElementById("gameName").value.trim();
 
       const entryFee =
-        document
-          .getElementById("entryFee")
-          .value
-          .trim();
+        document.getElementById("entryFee").value.trim();
 
       const prizePool =
-        document
-          .getElementById("prizePool")
-          .value
-          .trim();
+        document.getElementById("prizePool").value.trim();
 
       const tournamentType =
-        document
-          .getElementById("tournamentType")
-          .value;
+        document.getElementById("tournamentType").value;
 
 
-      // Validation
+      // VALIDATION
 
-      if (
-        !tournamentName ||
-        !gameName ||
-        !entryFee ||
-        !prizePool ||
-        !tournamentType
-      ) {
+      if (!tournamentName) {
+        showMessage("❌ Tournament Name enter karo.", "error");
+        return;
+      }
 
-        showMessage(
-          "⚠️ Please fill all tournament fields!",
-          "error"
-        );
+      if (!gameName) {
+        showMessage("❌ Game Name enter karo.", "error");
+        return;
+      }
 
+      if (entryFee === "") {
+        showMessage("❌ Entry Fee enter karo.", "error");
+        return;
+      }
+
+      if (prizePool === "") {
+        showMessage("❌ Prize Pool enter karo.", "error");
+        return;
+      }
+
+      if (!tournamentType) {
+        showMessage("❌ Tournament Type select karo.", "error");
         return;
       }
 
 
-      button.disabled = true;
-
-      button.textContent =
-        "Creating...";
-
-
       try {
 
-        await addDoc(
-          collection(db, "tournaments"),
-          {
+        await db.collection("tournaments").add({
 
-            tournamentName:
-              tournamentName,
+          tournamentName: tournamentName,
 
-            gameName:
-              gameName,
+          gameName: gameName,
 
-            entryFee:
-              Number(entryFee),
+          entryFee: Number(entryFee),
 
-            prizePool:
-              Number(prizePool),
+          prizePool: Number(prizePool),
 
-            tournamentType:
-              tournamentType,
+          tournamentType: tournamentType,
 
-            createdAt:
-              serverTimestamp()
+          createdAt:
+            firebase.firestore.FieldValue.serverTimestamp()
 
-          }
-        );
+        });
 
 
         showMessage(
@@ -540,36 +485,20 @@
         );
 
 
-        // Clear fields
+        // CLEAR FORM
 
-        document
-          .getElementById("tournamentName")
-          .value = "";
+        document.getElementById("tournamentName").value = "";
 
-        document
-          .getElementById("gameName")
-          .value = "";
+        document.getElementById("gameName").value = "";
 
-        document
-          .getElementById("entryFee")
-          .value = "";
+        document.getElementById("entryFee").value = "";
 
-        document
-          .getElementById("prizePool")
-          .value = "";
+        document.getElementById("prizePool").value = "";
 
-        document
-          .getElementById("tournamentType")
-          .value = "";
+        document.getElementById("tournamentType").value = "";
 
 
-        // Reload list
-
-        loadTournaments();
-
-      }
-
-      catch (error) {
+      } catch (error) {
 
         console.error(error);
 
@@ -580,107 +509,97 @@
 
       }
 
-      finally {
-
-        button.disabled = false;
-
-        button.textContent =
-          "Create Tournament";
-
-      }
-
     }
 
 
-
-    // =====================================================
+    // =========================================================
     // REGISTER PLAYER
-    // =====================================================
+    // =========================================================
 
     async function registerPlayer() {
 
-      const button =
-        document.getElementById("registerPlayerBtn");
+      const tournamentId =
+        document.getElementById("playerTournament").value;
+
+      const tournamentSelect =
+        document.getElementById("playerTournament");
+
+      const selectedOption =
+        tournamentSelect.options[tournamentSelect.selectedIndex];
 
 
       const playerName =
-        document
-          .getElementById("playerName")
-          .value
-          .trim();
-
+        document.getElementById("playerName").value.trim();
 
       const gameUID =
-        document
-          .getElementById("gameUID")
-          .value
-          .trim();
-
+        document.getElementById("gameUID").value.trim();
 
       const mobileNumber =
-        document
-          .getElementById("mobileNumber")
-          .value
-          .trim();
+        document.getElementById("mobileNumber").value.trim();
 
 
-      // Validation
+      // VALIDATION
 
-      if (
-        !playerName ||
-        !gameUID ||
-        !mobileNumber
-      ) {
-
+      if (!tournamentId) {
         showMessage(
-          "⚠️ Please fill all player fields!",
+          "❌ Pehle tournament select karo.",
           "error"
         );
-
         return;
       }
 
-
-      if (
-        mobileNumber.length !== 10 ||
-        isNaN(mobileNumber)
-      ) {
-
+      if (!playerName) {
         showMessage(
-          "⚠️ Please enter valid 10 digit mobile number!",
+          "❌ Player Name enter karo.",
           "error"
         );
-
         return;
       }
 
+      if (!gameUID) {
+        showMessage(
+          "❌ Game UID enter karo.",
+          "error"
+        );
+        return;
+      }
 
-      button.disabled = true;
+      if (!mobileNumber) {
+        showMessage(
+          "❌ Mobile Number enter karo.",
+          "error"
+        );
+        return;
+      }
 
-      button.textContent =
-        "Registering...";
+      if (!/^[0-9]{10}$/.test(mobileNumber)) {
+        showMessage(
+          "❌ 10 digit mobile number enter karo.",
+          "error"
+        );
+        return;
+      }
 
 
       try {
 
-        await addDoc(
-          collection(db, "players"),
-          {
+        await db.collection("players").add({
 
-            playerName:
-              playerName,
+          tournamentId: tournamentId,
 
-            gameUID:
-              gameUID,
+          tournamentName:
+            selectedOption.dataset.name || selectedOption.text,
 
-            mobileNumber:
-              mobileNumber,
+          playerName: playerName,
 
-            registeredAt:
-              serverTimestamp()
+          gameUID: gameUID,
 
-          }
-        );
+          mobileNumber: mobileNumber,
+
+          registeredAt:
+            firebase.firestore.FieldValue.serverTimestamp()
+
+        });
 
 
         showMessage(
@@ -689,28 +608,16 @@
         );
 
 
-        // Clear fields
+        // CLEAR FORM
 
-        document
-          .getElementById("playerName")
-          .value = "";
+        document.getElementById("playerName").value = "";
 
-        document
-          .getElementById("gameUID")
-          .value = "";
+        document.getElementById("gameUID").value = "";
 
-        document
-          .getElementById("mobileNumber")
-          .value = "";
+        document.getElementById("mobileNumber").value = "";
 
 
-        // Reload list
-
-        loadPlayers();
-
-      }
-
-      catch (error) {
+      } catch (error) {
 
         console.error(error);
 
@@ -721,270 +628,257 @@
 
       }
 
-      finally {
-
-        button.disabled = false;
-
-        button.textContent =
-          "Register Player";
-
-      }
-
     }
 
 
-
-    // =====================================================
+    // =========================================================
     // LOAD TOURNAMENTS
-    // =====================================================
+    // =========================================================
 
-    async function loadTournaments() {
+    function loadTournaments() {
 
-      const list =
-        document.getElementById(
-          "tournamentList"
+      db.collection("tournaments")
+        .orderBy("createdAt", "desc")
+        .onSnapshot(
+
+          function(snapshot) {
+
+            const list =
+              document.getElementById("tournamentList");
+
+            const select =
+              document.getElementById("playerTournament");
+
+
+            list.innerHTML = "";
+
+            select.innerHTML =
+              '<option value="">Select Tournament</option>';
+
+
+            if (snapshot.empty) {
+
+              list.innerHTML =
+                '<div class="empty">No tournaments available.</div>';
+
+              return;
+            }
+
+
+            snapshot.forEach(function(doc) {
+
+              const data = doc.data();
+
+
+              // -----------------------------
+              // TOURNAMENT CARD
+              // -----------------------------
+
+              const div =
+                document.createElement("div");
+
+              div.className = "tournament";
+
+
+              div.innerHTML = `
+
+                <span class="badge">
+                  ${escapeHTML(data.tournamentType || "Tournament")}
+                </span>
+
+                <h3>
+                  🏆 ${escapeHTML(data.tournamentName || "Unnamed Tournament")}
+                </h3>
+
+                <div class="info">
+
+                  <div>
+                    🎮 Game:
+                    <strong>
+                      ${escapeHTML(data.gameName || "-")}
+                    </strong>
+                  </div>
+
+                  <div>
+                    💰 Entry:
+                    <strong>
+                      ₹${Number(data.entryFee || 0)}
+                    </strong>
+                  </div>
+
+                  <div>
+                    🏆 Prize:
+                    <strong>
+                      ₹${Number(data.prizePool || 0)}
+                    </strong>
+                  </div>
+
+                  <div>
+                    👥 Type:
+                    <strong>
+                      ${escapeHTML(data.tournamentType || "-")}
+                    </strong>
+                  </div>
+
+                </div>
+
+              `;
+
+
+              list.appendChild(div);
+
+
+              // -----------------------------
+              // SELECT OPTION
+              // -----------------------------
+
+              const option =
+                document.createElement("option");
+
+              option.value = doc.id;
+
+              option.text =
+                data.tournamentName +
+                " - " +
+                data.gameName;
+
+              option.dataset.name =
+                data.tournamentName;
+
+
+              select.appendChild(option);
+
+            });
+
+          },
+
+          function(error) {
+
+            console.error(error);
+
+            document.getElementById("tournamentList").innerHTML =
+              '<div class="empty">Tournament load nahi ho pa rahe.</div>';
+
+            showMessage(
+              "❌ Tournament loading error: " +
+              error.message,
+              "error"
+            );
+
+          }
+
         );
-
-
-      list.innerHTML =
-        '<div class="loading">Loading tournaments...</div>';
-
-
-      try {
-
-        const snapshot =
-          await getDocs(
-            collection(db, "tournaments")
-          );
-
-
-        if (snapshot.empty) {
-
-          list.innerHTML =
-            '<div class="empty">No tournaments available.</div>';
-
-          return;
-        }
-
-
-        list.innerHTML = "";
-
-
-        snapshot.forEach(function(doc) {
-
-          const data =
-            doc.data();
-
-
-          const item =
-            document.createElement("div");
-
-          item.className =
-            "item";
-
-
-          item.innerHTML = `
-
-            <h3>
-              🏆 ${escapeHTML(data.tournamentName || "Tournament")}
-            </h3>
-
-            <p>
-              🎮 Game:
-              <strong>
-                ${escapeHTML(data.gameName || "-")}
-              </strong>
-            </p>
-
-            <p>
-              💰 Entry Fee:
-              <strong>
-                ₹${data.entryFee ?? 0}
-              </strong>
-            </p>
-
-            <p>
-              💎 Prize Pool:
-              <strong>
-                ₹${data.prizePool ?? 0}
-              </strong>
-            </p>
-
-            <span class="badge">
-              ${escapeHTML(data.tournamentType || "-")}
-            </span>
-
-          `;
-
-
-          list.appendChild(item);
-
-        });
-
-      }
-
-      catch (error) {
-
-        console.error(error);
-
-        list.innerHTML =
-          '<div class="empty">❌ Tournament load nahi ho paaye.</div>';
-
-      }
 
     }
 
 
-
-    // =====================================================
+    // =========================================================
     // LOAD PLAYERS
-    // =====================================================
+    // =========================================================
 
-    async function loadPlayers() {
+    function loadPlayers() {
 
-      const list =
-        document.getElementById(
-          "playerList"
+      db.collection("players")
+        .orderBy("registeredAt", "desc")
+        .onSnapshot(
+
+          function(snapshot) {
+
+            const list =
+              document.getElementById("playerList");
+
+            list.innerHTML = "";
+
+
+            if (snapshot.empty) {
+
+              list.innerHTML =
+                '<div class="empty">Abhi koi player registered nahi hai.</div>';
+
+              return;
+            }
+
+
+            snapshot.forEach(function(doc) {
+
+              const data = doc.data();
+
+
+              const div =
+                document.createElement("div");
+
+              div.className = "player";
+
+
+              div.innerHTML = `
+
+                <h3>
+                  👤 ${escapeHTML(data.playerName || "Player")}
+                </h3>
+
+                <p>
+                  🎮 Game UID:
+                  <strong>
+                    ${escapeHTML(data.gameUID || "-")}
+                  </strong>
+                </p>
+
+                <p>
+                  🏆 Tournament:
+                  <strong>
+                    ${escapeHTML(data.tournamentName || "-")}
+                  </strong>
+                </p>
+
+                <p>
+                  📱 Mobile:
+                  <strong>
+                    ${escapeHTML(data.mobileNumber || "-")}
+                  </strong>
+                </p>
+
+              `;
+
+
+              list.appendChild(div);
+
+            });
+
+          },
+
+          function(error) {
+
+            console.error(error);
+
+            document.getElementById("playerList").innerHTML =
+              '<div class="empty">Players load nahi ho pa rahe.</div>';
+
+          }
+
         );
-
-
-      list.innerHTML =
-        '<div class="loading">Loading players...</div>';
-
-
-      try {
-
-        const snapshot =
-          await getDocs(
-            collection(db, "players")
-          );
-
-
-        if (snapshot.empty) {
-
-          list.innerHTML =
-            '<div class="empty">No players registered yet.</div>';
-
-          return;
-        }
-
-
-        list.innerHTML = "";
-
-
-        snapshot.forEach(function(doc) {
-
-          const data =
-            doc.data();
-
-
-          const item =
-            document.createElement("div");
-
-          item.className =
-            "item";
-
-
-          item.innerHTML = `
-
-            <h3>
-              👤 ${escapeHTML(data.playerName || "Player")}
-            </h3>
-
-            <p>
-              🎮 Game UID:
-              <strong>
-                ${escapeHTML(data.gameUID || "-")}
-              </strong>
-            </p>
-
-            <p>
-              📱 Mobile:
-              <strong>
-                ${escapeHTML(data.mobileNumber || "-")}
-              </strong>
-            </p>
-
-          `;
-
-
-          list.appendChild(item);
-
-        });
-
-      }
-
-      catch (error) {
-
-        console.error(error);
-
-        list.innerHTML =
-          '<div class="empty">❌ Players load nahi ho paaye.</div>';
-
-      }
 
     }
 
 
-
-    // =====================================================
-    // SECURITY - HTML ESCAPE
-    // =====================================================
+    // =========================================================
+    // SECURITY HELPER
+    // =========================================================
 
     function escapeHTML(value) {
 
       const div =
         document.createElement("div");
 
-      div.textContent =
-        String(value);
+      div.textContent = value;
 
       return div.innerHTML;
 
     }
 
 
-
-    // =====================================================
-    // BUTTON EVENTS
-    // =====================================================
-
-    document
-      .getElementById("createTournamentBtn")
-      .addEventListener(
-        "click",
-        createTournament
-      );
-
-
-    document
-      .getElementById("registerPlayerBtn")
-      .addEventListener(
-        "click",
-        registerPlayer
-      );
-
-
-    document
-      .getElementById("refreshTournamentsBtn")
-      .addEventListener(
-        "click",
-        loadTournaments
-      );
-
-
-    document
-      .getElementById("refreshPlayersBtn")
-      .addEventListener(
-        "click",
-        loadPlayers
-      );
-
-
-
-    // =====================================================
-    // INITIAL LOAD
-    // =====================================================
+    // =========================================================
+    // START APP
+    // =========================================================
 
     loadTournaments();
 
@@ -993,4 +887,4 @@
   </script>
 
 </body>
-</html>
+  </html>
