@@ -4,1349 +4,1097 @@
 <meta charset="UTF-8">
 <meta name="viewport" content="width=device-width, initial-scale=1.0">
 
-<title>BattleZone Tournament</title>
+<title>BattleZone - Esports Tournament</title>
 
 <style>
 *{
-  box-sizing:border-box;
-  font-family:Arial,sans-serif;
+    box-sizing:border-box;
+    margin:0;
+    padding:0;
+    font-family:Arial,Helvetica,sans-serif;
 }
 
 body{
-  margin:0;
-  background:#08080c;
-  color:#fff;
+    background:#292929;
+    color:#fff;
+    padding-bottom:80px;
 }
 
-header{
-  text-align:center;
-  padding:28px 15px;
-  background:linear-gradient(135deg,#ff9800,#ff2d00);
+button,input,select{
+    font-family:inherit;
 }
 
-header h1{
-  margin:0;
-  font-size:42px;
-  font-weight:900;
+/* TOP HEADER */
+.top-header{
+    background:#20263a;
+    min-height:135px;
+    padding:22px 18px 18px;
+    display:flex;
+    align-items:center;
+    gap:15px;
 }
 
-header p{
-  margin:8px 0 0;
-  font-size:19px;
+.logo{
+    width:58px;
+    height:58px;
+    border-radius:50%;
+    background:linear-gradient(135deg,#ff9d00,#ff4b00);
+    display:flex;
+    align-items:center;
+    justify-content:center;
+    font-size:27px;
+    border:3px solid #ffb000;
+    flex-shrink:0;
 }
 
-.container{
-  width:95%;
-  max-width:750px;
-  margin:25px auto;
+.header-text{
+    flex:1;
 }
 
-.card{
-  background:#17171d;
-  border:1px solid #303039;
-  border-radius:24px;
-  padding:22px;
-  margin-bottom:22px;
-  box-shadow:0 5px 20px rgba(0,0,0,.35);
+.header-text small{
+    display:block;
+    font-size:18px;
+    font-weight:bold;
 }
 
-.card h2{
-  margin-top:0;
-  color:#ff9800;
-  font-size:28px;
+.header-text h1{
+    font-size:26px;
+    margin-top:3px;
 }
 
-input,
-select,
-textarea{
-  width:100%;
-  padding:16px;
-  margin:8px 0;
-  border-radius:15px;
-  border:1px solid #3a3a43;
-  background:#0d0d11;
-  color:#fff;
-  font-size:16px;
-  outline:none;
+.header-right{
+    display:flex;
+    align-items:center;
+    gap:10px;
 }
 
-textarea{
-  min-height:100px;
-  resize:vertical;
-}
-
-input:focus,
-select:focus,
-textarea:focus{
-  border-color:#ff9800;
-}
-
-button{
-  width:100%;
-  padding:16px;
-  margin-top:10px;
-  border:0;
-  border-radius:15px;
-  background:linear-gradient(135deg,#ff9800,#ff2d00);
-  color:#fff;
-  font-size:18px;
-  font-weight:bold;
-  cursor:pointer;
-}
-
-button.secondary{
-  background:#25252d;
-}
-
-button.danger{
-  background:#b71c1c;
-}
-
-button.green{
-  background:#137333;
-}
-
-.message{
-  display:none;
-  margin-top:12px;
-  padding:13px;
-  border-radius:12px;
-  text-align:center;
-  font-weight:bold;
-}
-
-.success{
-  background:#123d20;
-  color:#62ff91;
-}
-
-.error{
-  background:#461515;
-  color:#ff7777;
-}
-
-.tournament{
-  background:#0e0e13;
-  border:1px solid #36363f;
-  border-radius:20px;
-  padding:18px;
-  margin-top:15px;
-}
-
-.tournament h3{
-  color:#ff9800;
-  font-size:24px;
-  margin:12px 0;
+.bell{
+    position:relative;
+    font-size:25px;
 }
 
 .badge{
-  display:inline-block;
-  padding:7px 13px;
-  border-radius:20px;
-  font-size:13px;
-  font-weight:bold;
-  background:#403000;
-  color:#ffc107;
+    position:absolute;
+    top:-8px;
+    right:-7px;
+    background:#ffd400;
+    color:#111;
+    font-size:10px;
+    font-weight:bold;
+    padding:2px 5px;
+    border-radius:5px;
 }
 
-.badge.live{
-  background:#123d20;
-  color:#52ff82;
+.coins{
+    background:white;
+    color:#111;
+    border-radius:20px;
+    padding:6px 12px;
+    font-weight:bold;
 }
 
-.badge.completed{
-  background:#292929;
-  color:#bbb;
+/* NOTICE */
+.notice{
+    margin:18px 22px;
+    background:white;
+    color:#333;
+    border-radius:8px;
+    min-height:90px;
+    display:flex;
+    align-items:center;
+    overflow:hidden;
+}
+
+.notice-icon{
+    width:75px;
+    min-height:90px;
+    background:#ff7518;
+    display:flex;
+    justify-content:center;
+    align-items:center;
+    font-size:30px;
+}
+
+.notice-text{
+    padding:15px;
+    font-size:18px;
+}
+
+/* MAIN */
+.container{
+    padding:0 22px;
+}
+
+.section-title{
+    font-size:22px;
+    margin:30px 0 22px;
+}
+
+/* ACCOUNT ICONS */
+.account-grid{
+    display:grid;
+    grid-template-columns:repeat(4,1fr);
+    gap:12px;
+}
+
+.account-item{
+    text-align:center;
+    cursor:pointer;
+}
+
+.account-circle{
+    width:76px;
+    height:76px;
+    max-width:100%;
+    margin:auto;
+    border-radius:50%;
+    background:#ff7418;
+    display:flex;
+    justify-content:center;
+    align-items:center;
+    font-size:37px;
+    box-shadow:0 4px 10px rgba(0,0,0,.3);
+}
+
+.account-item p{
+    margin-top:7px;
+    font-size:16px;
+}
+
+/* BANNER */
+.banner{
+    margin-top:28px;
+    height:190px;
+    border-radius:10px;
+    overflow:hidden;
+    background:
+    radial-gradient(circle at 20% 30%,#ffd800 0,#ff8c00 20%,transparent 45%),
+    linear-gradient(135deg,#ff6500,#ffb000,#ff4c00);
+    position:relative;
+    display:flex;
+    align-items:center;
+    justify-content:center;
+    text-align:center;
+}
+
+.banner h2{
+    font-size:38px;
+    font-weight:900;
+    text-shadow:3px 3px #111;
+}
+
+.banner p{
+    font-size:20px;
+    margin-top:8px;
+}
+
+/* CONTEST */
+.contest-grid{
+    display:grid;
+    grid-template-columns:repeat(3,1fr);
+    gap:15px;
+}
+
+.contest-card{
+    background:#fff;
+    color:#222;
+    min-height:130px;
+    border-radius:14px;
+    display:flex;
+    flex-direction:column;
+    justify-content:center;
+    align-items:center;
+    cursor:pointer;
+    box-shadow:0 5px 10px rgba(0,0,0,.25);
+    transition:.2s;
+}
+
+.contest-card:active{
+    transform:scale(.96);
+}
+
+.contest-card .icon{
+    font-size:35px;
+    color:#6717ff;
+}
+
+.contest-card p{
+    margin-top:12px;
+    font-size:17px;
+}
+
+/* GAMES */
+.games-grid{
+    display:grid;
+    grid-template-columns:repeat(3,1fr);
+    gap:10px;
+}
+
+.game-card{
+    background:#ff7118;
+    border-radius:7px;
+    overflow:hidden;
+    color:#111;
+    text-align:center;
+    cursor:pointer;
+}
+
+.game-image{
+    height:115px;
+    display:flex;
+    align-items:center;
+    justify-content:center;
+    font-size:55px;
+    background:
+    radial-gradient(circle at 25% 20%,#fff4 0 10%,transparent 11%),
+    linear-gradient(135deg,#355ca8,#131b55);
+}
+
+.game-card:nth-child(2) .game-image{
+    background:linear-gradient(135deg,#ff7c00,#8d00ff);
+}
+
+.game-card:nth-child(3) .game-image{
+    background:linear-gradient(135deg,#00b8ff,#17316f);
+}
+
+.game-card:nth-child(4) .game-image{
+    background:linear-gradient(135deg,#8c8c8c,#252525);
+}
+
+.game-card:nth-child(5) .game-image{
+    background:linear-gradient(135deg,#4d91ff,#8e00ff);
+}
+
+.game-card:nth-child(6) .game-image{
+    background:linear-gradient(135deg,#17264e,#5c83c8);
+}
+
+.game-name{
+    padding:8px;
+    font-size:17px;
+    font-weight:bold;
+}
+
+/* TOURNAMENT */
+.panel{
+    margin-top:30px;
+    background:#222226;
+    border-radius:18px;
+    padding:18px;
+    border:1px solid #444;
+}
+
+.panel h2{
+    color:#ff9415;
+    margin-bottom:18px;
+}
+
+.tournament-card{
+    border:1px solid #444;
+    border-radius:17px;
+    padding:18px;
+    background:#101014;
+    margin-bottom:15px;
+}
+
+.tournament-top{
+    display:flex;
+    justify-content:space-between;
+    align-items:center;
+    margin-bottom:12px;
+}
+
+.type{
+    background:#493900;
+    color:#ffd000;
+    padding:6px 12px;
+    border-radius:20px;
+    font-size:13px;
+}
+
+.status{
+    background:#163f20;
+    color:#58ff7c;
+    padding:5px 9px;
+    border-radius:15px;
+    font-size:12px;
+}
+
+.tournament-title{
+    color:#ff9515;
+    font-size:22px;
+    margin:12px 0;
 }
 
 .info{
-  background:#1b1b23;
-  border-radius:12px;
-  padding:11px;
-  margin:7px 0;
+    background:#1b1b21;
+    border-radius:12px;
+    padding:11px;
+    margin:8px 0;
+    color:#ddd;
 }
 
-.room{
-  background:#201900;
-  border:1px solid #9b7200;
-  padding:14px;
-  border-radius:14px;
-  margin-top:12px;
+.join-btn{
+    width:100%;
+    margin-top:12px;
+    border:0;
+    border-radius:10px;
+    padding:13px;
+    background:linear-gradient(90deg,#ff9d00,#ff3e00);
+    color:white;
+    font-size:17px;
+    font-weight:bold;
+    cursor:pointer;
 }
 
-.winner{
-  background:linear-gradient(135deg,#332600,#17120a);
-  border:1px solid #d49a00;
-  padding:18px;
-  border-radius:18px;
-  margin-top:12px;
-  text-align:center;
+/* PLAYERS */
+.player-card{
+    background:#101014;
+    border:1px solid #444;
+    border-radius:16px;
+    padding:16px;
+    margin-bottom:12px;
 }
 
-.winner h3{
-  color:#ffd54f;
-  margin:5px;
-  font-size:25px;
+.player-name{
+    font-size:20px;
+    font-weight:bold;
 }
 
-.player{
-  background:#0e0e13;
-  border:1px solid #36363f;
-  border-radius:18px;
-  padding:16px;
-  margin-top:12px;
+.player-info{
+    color:#bbb;
+    margin-top:8px;
 }
 
-.player h3{
-  margin:0 0 10px;
+/* MODAL */
+.modal{
+    display:none;
+    position:fixed;
+    inset:0;
+    background:rgba(0,0,0,.75);
+    z-index:1000;
+    align-items:center;
+    justify-content:center;
+    padding:18px;
 }
 
-.player p{
-  margin:7px 0;
-  color:#ddd;
+.modal-box{
+    width:100%;
+    max-width:450px;
+    max-height:90vh;
+    overflow:auto;
+    background:#222226;
+    border-radius:18px;
+    padding:22px;
+    border:1px solid #555;
 }
 
-.admin{
-  display:none;
+.modal-box h2{
+    color:#ff9815;
+    margin-bottom:18px;
 }
 
-.admin.show{
-  display:block;
+.modal-input{
+    width:100%;
+    padding:14px;
+    margin:7px 0;
+    border-radius:10px;
+    border:1px solid #555;
+    background:#101014;
+    color:white;
+    font-size:16px;
+    outline:none;
 }
 
-.admin-title{
-  color:#ff5252 !important;
+.modal-input:focus{
+    border-color:#ff8515;
 }
 
-.hidden{
-  display:none !important;
+.close{
+    float:right;
+    background:#444;
+    border:0;
+    color:#fff;
+    width:35px;
+    height:35px;
+    border-radius:50%;
+    font-size:20px;
 }
 
-.empty{
-  text-align:center;
-  color:#999;
-  padding:20px;
+/* PROFILE */
+.profile{
+    text-align:center;
 }
 
-.loading{
-  text-align:center;
-  color:#aaa;
-  padding:15px;
+.profile-avatar{
+    width:100px;
+    height:100px;
+    border-radius:50%;
+    background:linear-gradient(135deg,#ff9b00,#ff4300);
+    margin:10px auto 15px;
+    display:flex;
+    align-items:center;
+    justify-content:center;
+    font-size:50px;
 }
 
-.search{
-  margin-bottom:10px;
-}
-
-.stats{
-  display:grid;
-  grid-template-columns:repeat(3,1fr);
-  gap:8px;
-  margin-top:12px;
+.profile-stat{
+    display:flex;
+    gap:10px;
+    margin-top:20px;
 }
 
 .stat{
-  background:#202027;
-  border-radius:13px;
-  text-align:center;
-  padding:12px 5px;
+    flex:1;
+    background:#101014;
+    padding:15px 8px;
+    border-radius:12px;
 }
 
 .stat b{
-  display:block;
-  font-size:20px;
-  color:#ff9800;
+    display:block;
+    color:#ff9a15;
+    font-size:20px;
 }
 
-.stat span{
-  font-size:12px;
-  color:#aaa;
+/* BOTTOM NAV */
+.bottom-nav{
+    position:fixed;
+    bottom:0;
+    left:0;
+    right:0;
+    height:70px;
+    background:#354a54;
+    display:grid;
+    grid-template-columns:repeat(5,1fr);
+    z-index:900;
+    border-top:1px solid #56656c;
 }
 
-footer{
-  text-align:center;
-  color:#777;
-  padding:30px 10px;
+.nav-item{
+    color:#d9d9d9;
+    display:flex;
+    flex-direction:column;
+    align-items:center;
+    justify-content:center;
+    font-size:13px;
+    cursor:pointer;
 }
 
-@media(max-width:500px){
+.nav-item span{
+    font-size:27px;
+}
 
-  header h1{
-    font-size:34px;
-  }
+.nav-item.active{
+    color:white;
+    font-weight:bold;
+}
 
-  header p{
-    font-size:16px;
-  }
+/* LOADER */
+.loader{
+    text-align:center;
+    padding:20px;
+    color:#aaa;
+}
 
-  .card{
-    padding:18px;
-  }
+/* TOAST */
+.toast{
+    position:fixed;
+    left:50%;
+    bottom:90px;
+    transform:translateX(-50%);
+    background:#222;
+    color:white;
+    padding:13px 18px;
+    border-radius:10px;
+    display:none;
+    z-index:2000;
+    border:1px solid #555;
+    max-width:90%;
+    text-align:center;
+}
 
-  .card h2{
-    font-size:25px;
-  }
+/* DESKTOP */
+@media(min-width:700px){
+    .container{
+        max-width:900px;
+        margin:auto;
+    }
 
-  .stats{
-    grid-template-columns:1fr 1fr 1fr;
-  }
+    .top-header{
+        padding-left:calc((100% - 900px)/2);
+        padding-right:calc((100% - 900px)/2);
+    }
+
+    .notice{
+        max-width:900px;
+        margin-left:auto;
+        margin-right:auto;
+    }
+}
+
+@media(max-width:380px){
+    .account-circle{
+        width:64px;
+        height:64px;
+        font-size:30px;
+    }
+
+    .account-item p{
+        font-size:13px;
+    }
+
+    .banner h2{
+        font-size:28px;
+    }
 }
 </style>
 </head>
 
 <body>
 
-<header>
-  <h1>⚔️ BattleZone</h1>
-  <p>Ultimate Tournament Platform</p>
+<!-- HEADER -->
+<header class="top-header">
+
+    <div class="logo">🎮</div>
+
+    <div class="header-text">
+        <small>Welcome Back,</small>
+        <h1 id="headerName">Grind Battle</h1>
+    </div>
+
+    <div class="header-right">
+        <div class="bell">
+            🔔
+            <span class="badge" id="notificationCount">0</span>
+        </div>
+
+        <div class="coins">
+            🪙 <span id="walletBalance">0</span>
+        </div>
+    </div>
+
 </header>
 
-<div class="container">
 
-<!-- =====================================================
-     CREATE TOURNAMENT
-===================================================== -->
+<!-- NOTICE -->
+<div class="notice">
+    <div class="notice-icon">📢</div>
+    <div class="notice-text">
+        WELCOME TO BATTLEZONE
+    </div>
+</div>
 
-<div class="card">
 
-<h2>🏆 Create Tournament</h2>
+<main class="container">
 
-<input
-  id="tournamentName"
-  type="text"
-  placeholder="Tournament Name"
->
+<!-- ACCOUNT -->
+<h2 class="section-title">Account Details</h2>
 
-<input
-  id="gameName"
-  type="text"
-  placeholder="Game Name"
->
+<div class="account-grid">
 
-<input
-  id="entryFee"
-  type="number"
-  min="0"
-  placeholder="Entry Fee ₹"
->
+    <div class="account-item" onclick="openProfile()">
+        <div class="account-circle">👤</div>
+        <p>My Profile</p>
+    </div>
 
-<input
-  id="prizePool"
-  type="number"
-  min="0"
-  placeholder="Prize Pool ₹"
->
+    <div class="account-item" onclick="openWallet()">
+        <div class="account-circle">💳</div>
+        <p>My Wallet</p>
+    </div>
 
-<select id="tournamentType">
-  <option value="">Select Tournament Type</option>
-  <option value="Solo">Solo</option>
-  <option value="Duo">Duo</option>
-  <option value="Squad">Squad</option>
-</select>
+    <div class="account-item" onclick="openTopPlayers()">
+        <div class="account-circle">🏆</div>
+        <p>Top Players</p>
+    </div>
 
-<button onclick="createTournament()">
-  🏆 Create Tournament
-</button>
-
-<div id="tournamentMessage" class="message"></div>
+    <div class="account-item" onclick="openContact()">
+        <div class="account-circle">🎧</div>
+        <p>Contact Us</p>
+    </div>
 
 </div>
 
 
-<!-- =====================================================
-     REGISTER PLAYER
-===================================================== -->
+<!-- BANNER -->
+<div class="banner">
+    <div>
+        <h2>HOW TO USE<br>BATTLEZONE</h2>
+        <p>PLAY • WIN • EARN</p>
+    </div>
+</div>
 
-<div class="card">
 
-<h2>👤 Player Registration</h2>
+<!-- CONTEST -->
+<h2 class="section-title">My Contest</h2>
 
-<input
-  id="playerName"
-  type="text"
-  placeholder="Player Name"
->
+<div class="contest-grid">
 
-<input
-  id="gameUID"
-  type="text"
-  placeholder="Game UID"
->
+    <div class="contest-card" onclick="showContest('upcoming')">
+        <div class="icon">🏆</div>
+        <p>Upcoming</p>
+    </div>
 
-<input
-  id="mobileNumber"
-  type="tel"
-  maxlength="10"
-  placeholder="Mobile Number"
->
+    <div class="contest-card" onclick="showContest('ongoing')">
+        <div class="icon">🏆</div>
+        <p>Ongoing</p>
+    </div>
 
-<select id="playerTournament">
-  <option value="">Select Tournament</option>
-</select>
-
-<button onclick="registerPlayer()">
-  🎮 Register Player
-</button>
-
-<div id="playerMessage" class="message"></div>
+    <div class="contest-card" onclick="showContest('completed')">
+        <div class="icon">🏆</div>
+        <p>Completed</p>
+    </div>
 
 </div>
 
 
-<!-- =====================================================
-     TOURNAMENT LIST
-===================================================== -->
+<!-- GAMES -->
+<h2 class="section-title">eSport Games</h2>
 
-<div class="card">
+<div class="games-grid">
 
-<h2>🎮 Available Tournaments</h2>
+    <div class="game-card" onclick="selectGame('BGMI')">
+        <div class="game-image">🔫</div>
+        <div class="game-name">BGMI</div>
+    </div>
 
-<input
-  class="search"
-  id="tournamentSearch"
-  type="text"
-  placeholder="🔎 Search tournament..."
-  oninput="renderTournaments()"
->
+    <div class="game-card" onclick="selectGame('FF MAX')">
+        <div class="game-image">🎯</div>
+        <div class="game-name">FF MAX</div>
+    </div>
 
-<div id="tournamentList" class="loading">
-Loading tournaments...
-</div>
+    <div class="game-card" onclick="selectGame('CS')">
+        <div class="game-image">🎮</div>
+        <div class="game-name">CS</div>
+    </div>
 
-</div>
+    <div class="game-card" onclick="selectGame('PUBG')">
+        <div class="game-image">🪖</div>
+        <div class="game-name">PUBG</div>
+    </div>
 
+    <div class="game-card" onclick="selectGame('Free Fire')">
+        <div class="game-image">⚡</div>
+        <div class="game-name">FREE FIRE</div>
+    </div>
 
-<!-- =====================================================
-     PLAYERS
-===================================================== -->
-
-<div class="card">
-
-<h2>👥 Registered Players</h2>
-
-<select id="playerFilter" onchange="renderPlayers()">
-  <option value="">All Tournaments</option>
-</select>
-
-<div id="playerList" class="loading">
-Loading players...
-</div>
+    <div class="game-card" onclick="selectGame('COD')">
+        <div class="game-image">💥</div>
+        <div class="game-name">COD</div>
+    </div>
 
 </div>
 
 
-<!-- =====================================================
-     ADMIN LOGIN
-===================================================== -->
+<!-- TOURNAMENTS -->
+<div class="panel" id="tournamentsPanel">
 
-<div class="card">
+    <h2>🏆 Available Tournaments</h2>
 
-<h2>🔐 Admin Panel</h2>
-
-<input
-  id="adminPin"
-  type="password"
-  placeholder="Enter Admin PIN"
->
-
-<button onclick="adminLogin()">
-  🔐 Login Admin
-</button>
-
-<div id="adminMessage" class="message"></div>
+    <div id="tournamentsList">
+        <div class="loader">Loading tournaments...</div>
+    </div>
 
 </div>
 
 
-<!-- =====================================================
-     ADMIN PANEL
-===================================================== -->
+<!-- PLAYERS -->
+<div class="panel">
 
-<div id="adminPanel" class="admin">
+    <h2>👥 Registered Players</h2>
 
-<div class="card">
-
-<h2 class="admin-title">
-🛠️ ADMIN CONTROL PANEL
-</h2>
-
-<select id="adminTournament">
-  <option value="">Select Tournament</option>
-</select>
-
-<button onclick="loadAdminTournament()">
-  📂 Load Tournament
-</button>
-
-<div id="adminControls" class="hidden">
-
-<hr>
-
-<h3>📢 Tournament Announcement</h3>
-
-<textarea
-  id="announcement"
-  placeholder="Example: Room ID 12345 hai. Match 8 PM par start hoga."
-></textarea>
-
-<button onclick="saveAnnouncement()">
-  📢 Save Announcement
-</button>
-
-
-<h3>🚪 Room Details</h3>
-
-<input
-  id="roomId"
-  type="text"
-  placeholder="Room ID"
-/>
-
-<input
-  id="roomPassword"
-  type="text"
-  placeholder="Room Password"
-/>
-
-<button onclick="saveRoomDetails()">
-  🚪 Save Room Details
-</button>
-
-
-<h3>📊 Tournament Status</h3>
-
-<select id="tournamentStatus">
-  <option value="Upcoming">Upcoming</option>
-  <option value="Live">Live</option>
-  <option value="Completed">Completed</option>
-</select>
-
-<button onclick="saveStatus()">
-  📊 Update Status
-</button>
-
-
-<h3>🥇 Declare Winner</h3>
-
-<input
-  id="winnerName"
-  type="text"
-  placeholder="Winner Name"
-/>
-
-<input
-  id="winnerUID"
-  type="text"
-  placeholder="Winner Game UID"
-/>
-
-<button onclick="declareWinner()">
-  🥇 Declare Winner
-</button>
-
-
-<h3>⚠️ Admin Logout</h3>
-
-<button
-  class="secondary"
-  onclick="adminLogout()"
->
-  Logout Admin
-</button>
-
-<div id="adminActionMessage" class="message"></div>
+    <div id="playersList">
+        <div class="loader">Loading players...</div>
+    </div>
 
 </div>
 
-</div>
+</main>
+
+
+<!-- BOTTOM NAV -->
+<nav class="bottom-nav">
+
+    <div class="nav-item active" onclick="goHome(this)">
+        <span>⌂</span>
+        Home
+    </div>
+
+    <div class="nav-item" onclick="openWallet(this)">
+        <span>₹</span>
+        Wallet
+    </div>
+
+    <div class="nav-item" onclick="openTopPlayers(this)">
+        <span>🏆</span>
+        Winners
+    </div>
+
+    <div class="nav-item" onclick="showMyContests(this)">
+        <span>🎟️</span>
+        Contest
+    </div>
+
+    <div class="nav-item" onclick="openProfile(this)">
+        <span>☺</span>
+        Profile
+    </div>
+
+</nav>
+
+
+<!-- MODAL -->
+<div class="modal" id="modal">
+
+    <div class="modal-box">
+
+        <button class="close" onclick="closeModal()">×</button>
+
+        <div id="modalContent"></div>
+
+    </div>
 
 </div>
 
 
-<!-- =====================================================
-     FOOTER
-===================================================== -->
-
-<footer>
-© 2026 BattleZone Tournament Platform
-</footer>
+<!-- TOAST -->
+<div class="toast" id="toast"></div>
 
 
-<!-- =====================================================
-     FIREBASE
-===================================================== -->
+<script type="module">
 
-<script src="https://www.gstatic.com/firebasejs/10.12.2/firebase-app-compat.js"></script>
+/* =========================================================
+   FIREBASE
+========================================================= */
 
-<script src="https://www.gstatic.com/firebasejs/10.12.2/firebase-firestore-compat.js"></script>
+import { initializeApp }
+from "https://www.gstatic.com/firebasejs/10.12.2/firebase-app.js";
 
+import {
+    getFirestore,
+    collection,
+    addDoc,
+    getDocs,
+    serverTimestamp,
+    query,
+    orderBy
+}
+from "https://www.gstatic.com/firebasejs/10.12.2/firebase-firestore.js";
 
-<script>
-
-/* =====================================================
-   FIREBASE CONFIG
-===================================================== */
 
 const firebaseConfig = {
+    apiKey: "AIzaSyD3wpFyGO0x1aCblzlDey_qtT_Jvu7ZscY",
+    authDomain: "battlezone-ba07f.firebaseapp.com",
+    projectId: "battlezone-ba07f",
+    storageBucket: "battlezone-ba07f.firebasestorage.app",
+    messagingSenderId: "193110804088",
+    appId: "1:193110804088:web:6a1ddccc81cd785b1b4f8d"
+};
 
-  apiKey:
-  "AIzaSyD3wpFyGO0x1aCblzlDey_qtT_Jvu7ZscY",
 
-  authDomain:
-  "battlezone-ba07f.firebaseapp.com",
+const app = initializeApp(firebaseConfig);
+const db = getFirestore(app);
 
-  projectId:
-  "battlezone-ba07f",
 
-  storageBucket:
-  "battlezone-ba07f.firebasestorage.app",
+/* =========================================================
+   GLOBAL
+========================================================= */
 
-  messagingSenderId:
-  "193110804088",
+let tournaments = [];
+let players = [];
 
-  appId:
-  "1:193110804088:web:6a1ddccc81cd785b1b4f8d"
+let selectedGame = "";
+
+
+/* =========================================================
+   TOAST
+========================================================= */
+
+window.showToast = function(message){
+
+    const toast = document.getElementById("toast");
+
+    toast.innerText = message;
+    toast.style.display = "block";
+
+    setTimeout(()=>{
+        toast.style.display = "none";
+    },3000);
+};
+
+
+/* =========================================================
+   MODAL
+========================================================= */
+
+window.closeModal = function(){
+
+    document.getElementById("modal").style.display = "none";
 
 };
 
 
-firebase.initializeApp(firebaseConfig);
+function showModal(html){
 
-const db = firebase.firestore();
+    document.getElementById("modalContent").innerHTML = html;
 
-
-/* =====================================================
-   ADMIN PIN
-   CHANGE THIS PIN
-===================================================== */
-
-const ADMIN_PIN = "818190";
-
-
-/* =====================================================
-   GLOBAL DATA
-===================================================== */
-
-let tournaments = [];
-
-let players = [];
-
-let selectedAdminTournament = null;
-
-
-/* =====================================================
-   MESSAGE
-===================================================== */
-
-function showMessage(id,text,type){
-
-  const el =
-    document.getElementById(id);
-
-  el.innerText = text;
-
-  el.className =
-    "message " + type;
-
-  el.style.display = "block";
-
-  setTimeout(function(){
-
-    el.style.display = "none";
-
-  },5000);
+    document.getElementById("modal").style.display = "flex";
 
 }
 
 
-/* =====================================================
-   ESCAPE HTML
-===================================================== */
+/* =========================================================
+   HOME
+========================================================= */
 
-function escapeHTML(value){
+window.goHome = function(element){
 
-  const div =
-    document.createElement("div");
+    setActive(element);
 
-  div.textContent =
-    String(value ?? "");
+    window.scrollTo({
+        top:0,
+        behavior:"smooth"
+    });
 
-  return div.innerHTML;
+};
 
-}
 
+/* =========================================================
+   NAV ACTIVE
+========================================================= */
 
-/* =====================================================
-   CREATE TOURNAMENT
-===================================================== */
+function setActive(element){
 
-async function createTournament(){
+    document.querySelectorAll(".nav-item")
+    .forEach(item => item.classList.remove("active"));
 
-  const name =
-    document
-    .getElementById("tournamentName")
-    .value.trim();
-
-  const game =
-    document
-    .getElementById("gameName")
-    .value.trim();
-
-  const entry =
-    document
-    .getElementById("entryFee")
-    .value.trim();
-
-  const prize =
-    document
-    .getElementById("prizePool")
-    .value.trim();
-
-  const type =
-    document
-    .getElementById("tournamentType")
-    .value;
-
-
-  if(!name){
-
-    showMessage(
-      "tournamentMessage",
-      "❌ Tournament Name enter karo.",
-      "error"
-    );
-
-    return;
-  }
-
-
-  if(!game){
-
-    showMessage(
-      "tournamentMessage",
-      "❌ Game Name enter karo.",
-      "error"
-    );
-
-    return;
-  }
-
-
-  if(entry === ""){
-
-    showMessage(
-      "tournamentMessage",
-      "❌ Entry Fee enter karo.",
-      "error"
-    );
-
-    return;
-  }
-
-
-  if(prize === ""){
-
-    showMessage(
-      "tournamentMessage",
-      "❌ Prize Pool enter karo.",
-      "error"
-    );
-
-    return;
-  }
-
-
-  if(!type){
-
-    showMessage(
-      "tournamentMessage",
-      "❌ Tournament Type select karo.",
-      "error"
-    );
-
-    return;
-  }
-
-
-  try{
-
-    await db
-      .collection("tournaments")
-      .add({
-
-        tournamentName:name,
-
-        gameName:game,
-
-        entryFee:Number(entry),
-
-        prizePool:Number(prize),
-
-        tournamentType:type,
-
-        status:"Upcoming",
-
-        roomId:"",
-
-        roomPassword:"",
-
-        announcement:"",
-
-        winnerName:"",
-
-        winnerUID:"",
-
-        playerCount:0,
-
-        createdAt:
-          firebase
-          .firestore
-          .FieldValue
-          .serverTimestamp()
-
-      });
-
-
-    showMessage(
-      "tournamentMessage",
-      "✅ Tournament successfully create ho gaya!",
-      "success"
-    );
-
-
-    document
-      .getElementById("tournamentName")
-      .value="";
-
-    document
-      .getElementById("gameName")
-      .value="";
-
-    document
-      .getElementById("entryFee")
-      .value="";
-
-    document
-      .getElementById("prizePool")
-      .value="";
-
-    document
-      .getElementById("tournamentType")
-      .value="";
-
-  }
-
-  catch(error){
-
-    console.error(error);
-
-    showMessage(
-      "tournamentMessage",
-      "❌ Error: " + error.message,
-      "error"
-    );
-
-  }
-
-}
-
-
-/* =====================================================
-   REGISTER PLAYER
-===================================================== */
-
-async function registerPlayer(){
-
-  const name =
-    document
-    .getElementById("playerName")
-    .value.trim();
-
-  const uid =
-    document
-    .getElementById("gameUID")
-    .value.trim();
-
-  const mobile =
-    document
-    .getElementById("mobileNumber")
-    .value.trim();
-
-  const tournamentId =
-    document
-    .getElementById("playerTournament")
-    .value;
-
-
-  if(!name){
-
-    showMessage(
-      "playerMessage",
-      "❌ Player Name enter karo.",
-      "error"
-    );
-
-    return;
-  }
-
-
-  if(!uid){
-
-    showMessage(
-      "playerMessage",
-      "❌ Game UID enter karo.",
-      "error"
-    );
-
-    return;
-  }
-
-
-  if(!/^[0-9]{10}$/.test(mobile)){
-
-    showMessage(
-      "playerMessage",
-      "❌ Valid 10 digit mobile number enter karo.",
-      "error"
-    );
-
-    return;
-  }
-
-
-  if(!tournamentId){
-
-    showMessage(
-      "playerMessage",
-      "❌ Tournament select karo.",
-      "error"
-    );
-
-    return;
-  }
-
-
-  try{
-
-    const tournamentDoc =
-      await db
-      .collection("tournaments")
-      .doc(tournamentId)
-      .get();
-
-
-    if(!tournamentDoc.exists){
-
-      showMessage(
-        "playerMessage",
-        "❌ Tournament nahi mila.",
-        "error"
-      );
-
-      return;
+    if(element){
+        element.classList.add("active");
     }
 
-
-    const tournament =
-      tournamentDoc.data();
-
-
-    if(tournament.status === "Completed"){
-
-      showMessage(
-        "playerMessage",
-        "❌ Ye tournament complete ho chuka hai.",
-        "error"
-      );
-
-      return;
-    }
-
-
-    /*
-      DUPLICATE UID CHECK
-    */
-
-    const duplicate =
-      await db
-      .collection("players")
-      .where("tournamentId","==",tournamentId)
-      .where("gameUID","==",uid)
-      .limit(1)
-      .get();
-
-
-    if(!duplicate.empty){
-
-      showMessage(
-        "playerMessage",
-        "❌ Ye Game UID already registered hai.",
-        "error"
-      );
-
-      return;
-    }
-
-
-    /*
-      ADD PLAYER
-    */
-
-    await db
-      .collection("players")
-      .add({
-
-        playerName:name,
-
-        gameUID:uid,
-
-        mobileNumber:mobile,
-
-        tournamentId:tournamentId,
-
-        tournamentName:
-          tournament.tournamentName || "",
-
-        gameName:
-          tournament.gameName || "",
-
-        registeredAt:
-          firebase
-          .firestore
-          .FieldValue
-          .serverTimestamp()
-
-      });
-
-
-    /*
-      INCREASE PLAYER COUNT
-    */
-
-    await db
-      .collection("tournaments")
-      .doc(tournamentId)
-      .update({
-
-        playerCount:
-          firebase
-          .firestore
-          .FieldValue
-          .increment(1)
-
-      });
-
-
-    showMessage(
-      "playerMessage",
-      "✅ Player successfully register ho gaya!",
-      "success"
-    );
-
-
-    document
-      .getElementById("playerName")
-      .value="";
-
-    document
-      .getElementById("gameUID")
-      .value="";
-
-    document
-      .getElementById("mobileNumber")
-      .value="";
-
-    document
-      .getElementById("playerTournament")
-      .value="";
-
-  }
-
-  catch(error){
-
-    console.error(error);
-
-    showMessage(
-      "playerMessage",
-      "❌ Error: " + error.message,
-      "error"
-    );
-
-  }
-
 }
 
 
-/* =====================================================
-   LOAD TOURNAMENTS
-===================================================== */
+/* =========================================================
+   PROFILE
+========================================================= */
 
-function loadTournaments(){
+window.openProfile = function(element){
 
-  db.collection("tournaments")
-    .orderBy("createdAt","desc")
-    .onSnapshot(
+    if(element && element.classList){
+        setActive(element);
+    }
 
-      function(snapshot){
+    const savedName =
+        localStorage.getItem("battlezoneName") || "Guest Player";
 
-        tournaments=[];
+    showModal(`
+
+        <div class="profile">
+
+            <div class="profile-avatar">
+                👤
+            </div>
+
+            <h2>My Profile</h2>
+
+            <p style="font-size:20px;margin-top:10px;">
+                ${escapeHTML(savedName)}
+            </p>
+
+            <div class="profile-stat">
+
+                <div class="stat">
+                    <b>${players.length}</b>
+                    Registered
+                </div>
+
+                <div class="stat">
+                    <b>${tournaments.length}</b>
+                    Tournaments
+                </div>
+
+                <div class="stat">
+                    <b id="profileCoins">0</b>
+                    Coins
+                </div>
+
+            </div>
+
+            <button
+                class="join-btn"
+                style="margin-top:25px"
+                onclick="editProfile()">
+                ✏️ Edit Profile
+            </button>
+
+        </div>
+
+    `);
+
+};
 
 
-        snapshot.forEach(function(doc){
+/* =========================================================
+   EDIT PROFILE
+========================================================= */
 
-          tournaments.push({
+window.editProfile = function(){
 
-            id:doc.id,
+    const oldName =
+        localStorage.getItem("battlezoneName") || "";
 
-            ...doc.data()
+    showModal(`
 
-          });
+        <h2>✏️ Edit Profile</h2>
+
+        <input
+            id="profileNameInput"
+            class="modal-input"
+            placeholder="Enter your name"
+            value="${escapeAttribute(oldName)}"
+        >
+
+        <button
+            class="join-btn"
+            onclick="saveProfile()">
+            Save Profile
+        </button>
+
+    `);
+
+};
+
+
+window.saveProfile = function(){
+
+    const name =
+        document.getElementById("profileNameInput")
+        .value.trim();
+
+    if(!name){
+
+        showToast("Please enter your name");
+
+        return;
+    }
+
+    localStorage.setItem("battlezoneName",name);
+
+    document.getElementById("headerName").innerText =
+        name;
+
+    closeModal();
+
+    showToast("Profile updated successfully!");
+
+};
+
+
+/* =========================================================
+   WALLET
+========================================================= */
+
+window.openWallet = function(element){
+
+    if(element && element.classList){
+        setActive(element);
+    }
+
+    const balance =
+        Number(localStorage.getItem("walletBalance") || 0);
+
+    showModal(`
+
+        <h2>💰 My Wallet</h2>
+
+        <div style="
+            background:linear-gradient(135deg,#ff9800,#ff4500);
+            padding:25px;
+            border-radius:15px;
+            text-align:center;
+            margin-bottom:20px;
+        ">
+
+            <div style="font-size:16px">
+                Available Balance
+            </div>
+
+            <div style="
+                font-size:38px;
+                font-weight:bold;
+                margin-top:8px;
+            ">
+                ₹${balance}
+            </div>
+
+        </div>
+
+        <button
+            class="join-btn"
+            onclick="showToast('Wallet recharge feature coming soon')">
+            ➕ Add Money
+        </button>
+
+    `);
+
+};
+
+
+/* =========================================================
+   TOP PLAYERS
+========================================================= */
+
+window.openTopPlayers = function(element){
+
+    if(element && element.classList){
+        setActive(element);
+    }
+
+    const sorted =
+        [...players].slice(0,10);
+
+    let html = `
+        <h2>🏆 Top Players</h2>
+    `;
+
+    if(sorted.length === 0){
+
+        html += `
+            <p style="color:#aaa">
+                No players registered yet.
+            </p>
+        `;
+
+    }else{
+
+        sorted.forEach((p,index)=>{
+
+            html += `
+
+                <div class="player-card">
+
+                    <div class="player-name">
+                        ${index===0 ? "🥇" :
+                          index===1 ? "🥈" :
+                          index===2 ? "🥉" :
+                          "🏅"}
+
+                        ${escapeHTML(p.playerName || "Player")}
+                    </div>
+
+                    <div class="player-info">
+                        🎮 UID:
+                        ${escapeHTML(p.gameUID || "-")}
+                    </div>
+
+                </div>
+
+            `;
 
         });
 
-
-        updateTournamentDropdowns();
-
-        renderTournaments();
-
-      },
-
-      function(error){
-
-        console.error(error);
-
-        document
-          .getElementById("tournamentList")
-          .innerHTML =
-          '<div class="empty">❌ Tournament load error.</div>';
-
-      }
-
-    );
-
-}
-
-
-/* =====================================================
-   TOURNAMENT DROPDOWNS
-===================================================== */
-
-function updateTournamentDropdowns(){
-
-  const playerSelect =
-    document
-    .getElementById("playerTournament");
-
-  const filterSelect =
-    document
-    .getElementById("playerFilter");
-
-  const adminSelect =
-    document
-    .getElementById("adminTournament");
-
-
-  playerSelect.innerHTML =
-    '<option value="">Select Tournament</option>';
-
-  filterSelect.innerHTML =
-    '<option value="">All Tournaments</option>';
-
-  adminSelect.innerHTML =
-    '<option value="">Select Tournament</option>';
-
-
-  tournaments.forEach(function(t){
-
-    const text =
-      `${t.tournamentName || "Tournament"} - ${t.gameName || ""}`;
-
-
-    const option1 =
-      document.createElement("option");
-
-    option1.value=t.id;
-
-    option1.textContent=text;
-
-    playerSelect.appendChild(option1);
-
-
-    const option2 =
-      document.createElement("option");
-
-    option2.value=t.id;
-
-    option2.textContent=text;
-
-    filterSelect.appendChild(option2);
-
-
-    const option3 =
-      document.createElement("option");
-
-    option3.value=t.id;
-
-    option3.textContent=text;
-
-    adminSelect.appendChild(option3);
-
-  });
-
-}
-
-
-/* =====================================================
-   RENDER TOURNAMENTS
-===================================================== */
-
-function renderTournaments(){
-
-  const list =
-    document
-    .getElementById("tournamentList");
-
-
-  const search =
-    document
-    .getElementById("tournamentSearch")
-    .value
-    .toLowerCase()
-    .trim();
-
-
-  list.innerHTML="";
-
-
-  const filtered =
-    tournaments.filter(function(t){
-
-      const text =
-        (
-          (t.tournamentName || "") +
-          " " +
-          (t.gameName || "") +
-          " " +
-          (t.tournamentType || "")
-        ).toLowerCase();
-
-
-      return text.includes(search);
-
-    });
-
-
-  if(filtered.length===0){
-
-    list.innerHTML =
-      '<div class="empty">No tournaments found.</div>';
-
-    return;
-
-  }
-
-
-  filtered.forEach(function(t){
-
-    const status =
-      t.status || "Upcoming";
-
-
-    let badgeClass="";
-
-    if(status==="Live"){
-      badgeClass="live";
     }
 
-    if(status==="Completed"){
-      badgeClass="completed";
-    }
-
-
-    let roomHTML="";
-
-
-    if(status==="Live" && t.roomId){
-
-      roomHTML=`
-
-        <div class="room">
-
-          <b>🚪 ROOM DETAILS</b>
-
-          <div class="info">
-            Room ID:
-            <b>${escapeHTML(t.roomId)}</b>
-          </div>
-
-          <div class="info">
-            Password:
-            <b>${escapeHTML(t.roomPassword || "-")}</b>
-          </div>
-
-        </div>
-
-      `;
-
-    }
-
-
-    let announcementHTML="";
-
-
-    if(t.announcement){
-
-      announcementHTML=`
-
-        <div class="info">
-          📢
-          <b>Announcement:</b><br>
-          ${escapeHTML(t.announcement)}
-        </div>
-
-      `;
-
-    }
-
-
-    let winnerHTML="";
-
-
-    if(t.winnerName){
-
-      winnerHTML=`
-
-        <div class="winner">
-
-          <div>🏆 WINNER</div>
-
-          <h3>
-            🥇 ${escapeHTML(t.winnerName)}
-          </h3>
-
-          <div>
-            Game UID:
-            <b>${escapeHTML(t.winnerUID || "-")}</b>
-          </div>
-
-        </div>
-
-      `;
-
-    }
-
-
-    const card =
-      document.createElement("div");
-
-    card.className="tournament";
-
-
-    card.innerHTML=`
-
-      <span class="badge ${badgeClass}">
-        ${escapeHTML(status)}
-      </span>
-
-      <h3>
-       
+    showModal(ht
