@@ -4,86 +4,620 @@
 <meta charset="UTF-8">
 <meta name="viewport" content="width=device-width,initial-scale=1.0">
 <title>BattleZone Tournament</title>
+
 <style>
-*{box-sizing:border-box}body{margin:0;background:#0d1528;color:#fff;font-family:Arial,sans-serif}
-header{text-align:center;padding:28px 15px;border-bottom:1px solid #293653}header h1{margin:0;font-size:31px}header p{margin:8px 0 0;color:#aab4c9;font-size:18px}
-main{max-width:680px;margin:auto;padding:20px}.hero{background:linear-gradient(135deg,#792cff,#2865ed);border-radius:28px;padding:27px 25px;margin-bottom:20px}.hero h2{font-size:29px;margin:0 0 8px}.hero p{font-size:18px;color:#eee;margin:0 0 20px;line-height:1.4}
-.btn{border:0;border-radius:12px;padding:14px 19px;font-size:16px;font-weight:700;cursor:pointer}.primary{background:#8535ee;color:#fff}.hero .primary{background:#8535ee}.dark{background:#202c44;color:#fff}
-.stats{display:grid;grid-template-columns:repeat(3,1fr);gap:12px}.stat{background:#1b273d;border-radius:18px;padding:18px 8px;text-align:center}.stat b{display:block;color:#a88cff;font-size:27px}.stat span{color:#aab4c9}
-.card{background:#1b273d;border:1px solid #33425d;border-radius:20px;padding:20px;margin:16px 0}.card h2{margin:0 0 14px}.info{color:#aab4c9;line-height:1.8}.badge{display:inline-block;background:#173b2b;color:#72e5a2;padding:5px 9px;border-radius:20px;font-size:12px;font-weight:bold}
-input,select{width:100%;background:#0d1528;color:white;border:1px solid #3b4b68;border-radius:10px;padding:13px;margin:6px 0 13px;font-size:15px}.hidden{display:none}.nav{display:flex;gap:8px;margin:18px 0;overflow:auto}.nav .btn{white-space:nowrap}.danger{background:#8b2635;color:#fff}.muted{color:#9aa6bc;font-size:13px}
-.modal{position:fixed;inset:0;background:#000b;display:none;align-items:center;justify-content:center;padding:16px;z-index:10}.modalbox{background:#17223a;border:1px solid #3b4b68;border-radius:20px;padding:20px;width:100%;max-width:500px;max-height:90vh;overflow:auto}.modal.show{display:flex}
-table{width:100%;border-collapse:collapse;font-size:13px}th,td{text-align:left;padding:9px;border-bottom:1px solid #34415b}.empty{color:#9aa6bc;text-align:center;padding:15px}
-.bottom{position:sticky;bottom:0;background:#0d1528;border-top:1px solid #293653;display:flex;justify-content:space-around;padding:10px 5px;margin-top:30px}.bottom button{background:none;border:0;color:#aab4c9;font-size:14px}.bottom button:first-child{color:#a88cff}
-.toast{position:fixed;bottom:75px;left:50%;transform:translateX(-50%);background:#16a34a;padding:12px 18px;border-radius:12px;display:none;z-index:20}
+*{box-sizing:border-box}
+body{
+  margin:0;
+  font-family:Arial,sans-serif;
+  background:#080b12;
+  color:#fff;
+}
+header{
+  background:linear-gradient(135deg,#111827,#172554);
+  padding:25px 15px;
+  text-align:center;
+  border-bottom:1px solid #263248;
+}
+header h1{
+  margin:0;
+  font-size:30px;
+}
+header p{
+  color:#9ca3af;
+  margin:8px 0 0;
+}
+main{
+  max-width:700px;
+  margin:auto;
+  padding:18px;
+}
+.nav{
+  display:grid;
+  grid-template-columns:repeat(4,1fr);
+  gap:7px;
+  margin-bottom:18px;
+}
+button{
+  border:0;
+  border-radius:10px;
+  padding:12px;
+  font-weight:bold;
+  cursor:pointer;
+}
+.nav button{
+  background:#151c2b;
+  color:#fff;
+}
+.nav button.active,
+.primary{
+  background:#2563eb;
+  color:#fff;
+}
+.card{
+  background:#111827;
+  border:1px solid #273449;
+  border-radius:15px;
+  padding:17px;
+  margin-bottom:13px;
+}
+.card h2,.card h3{
+  margin-top:0;
+}
+.stats{
+  display:grid;
+  grid-template-columns:repeat(3,1fr);
+  gap:10px;
+}
+.stat{
+  background:#151c2b;
+  padding:15px 5px;
+  text-align:center;
+  border-radius:12px;
+}
+.stat b{
+  display:block;
+  font-size:22px;
+  color:#60a5fa;
+}
+input,select{
+  width:100%;
+  padding:13px;
+  margin:7px 0 12px;
+  border-radius:9px;
+  border:1px solid #334155;
+  background:#0b1220;
+  color:white;
+  font-size:15px;
+}
+label{
+  color:#cbd5e1;
+  font-size:14px;
+}
+.full{
+  width:100%;
+}
+.danger{
+  background:#dc2626;
+  color:white;
+}
+.success{
+  background:#16a34a;
+  color:white;
+}
+.muted{
+  color:#94a3b8;
+}
+.badge{
+  display:inline-block;
+  padding:5px 9px;
+  border-radius:20px;
+  background:#172554;
+  color:#60a5fa;
+  font-size:12px;
+}
+.hidden{
+  display:none;
+}
+.hero{
+  text-align:center;
+  padding:15px 0 25px;
+}
+.hero h2{
+  font-size:26px;
+}
+.tournament{
+  position:relative;
+}
+.row{
+  display:flex;
+  justify-content:space-between;
+  gap:10px;
+  align-items:center;
+}
+.small{
+  font-size:13px;
+}
+footer{
+  text-align:center;
+  padding:25px;
+  color:#64748b;
+}
 </style>
 </head>
+
 <body>
-<header><h1>🏆 BattleZone</h1><p>Gaming Tournament Platform</p></header>
+
+<header>
+  <h1>🏆 BattleZone</h1>
+  <p>Gaming Tournament Platform</p>
+</header>
+
 <main>
+
 <div class="nav">
-<button class="btn primary" onclick="page('home')">Home</button>
-<button class="btn dark" onclick="page('tournaments')">Tournaments</button>
-<button class="btn dark" onclick="page('admin')">Admin</button>
+  <button class="active" onclick="showPage('home',this)">Home</button>
+  <button onclick="showPage('tournaments',this)">Tournaments</button>
+  <button onclick="showPage('register',this)">Register</button>
+  <button onclick="showPage('admin',this)">Admin</button>
 </div>
 
+<!-- HOME -->
 <section id="home">
-<div class="hero"><h2>🔥 Welcome to BattleZone</h2><p>Join tournaments, compete with players and win exciting prizes!</p><button class="btn primary" onclick="page('tournaments')">View Tournaments</button></div>
-<div class="stats"><div class="stat"><b>12</b><span>Tournaments</span></div><div class="stat"><b id="playerCount">248</b><span>Players</span></div><div class="stat"><b>₹25K</b><span>Prize Pool</span></div></div>
-<div class="card"><h2>🔥 Featured Tournament</h2><h2>🎮 Free Fire Championship</h2><div class="info">Entry Fee: ₹50<br>Prize Pool: ₹5,000<br>Players: 48/100<br>Date: 30 August 2026</div><br><button class="btn primary" onclick="openJoin('Free Fire Championship')">Join Tournament</button></div>
+
+<div class="hero">
+  <h2>🔥 Compete. Win. Dominate.</h2>
+  <p class="muted">Join gaming tournaments and win exciting prizes.</p>
+  <button class="primary" onclick="showPage('tournaments')">
+    View Tournaments
+  </button>
+</div>
+
+<div class="stats">
+  <div class="stat">
+    <b id="totalTournaments">0</b>
+    Tournaments
+  </div>
+  <div class="stat">
+    <b id="totalPlayers">0</b>
+    Players
+  </div>
+  <div class="stat">
+    <b>₹0</b>
+    Prize Pool
+  </div>
+</div>
+
+<br>
+
+<div class="card">
+  <h3>🎮 How to Play</h3>
+  <p>1️⃣ Select a tournament</p>
+  <p>2️⃣ Enter your player details</p>
+  <p>3️⃣ Join the match</p>
+  <p>4️⃣ Win and climb the leaderboard</p>
+</div>
+
 </section>
 
-<section id="tournaments" class="hidden"><h2>🏆 Tournaments</h2><div id="tourList"></div></section>
 
+<!-- TOURNAMENTS -->
+<section id="tournaments" class="hidden">
+
+<h2>🏆 Available Tournaments</h2>
+
+<div id="tournamentList"></div>
+
+</section>
+
+
+<!-- REGISTER -->
+<section id="register" class="hidden">
+
+<div class="card">
+<h2>📝 Tournament Registration</h2>
+
+<label>Player Name</label>
+<input id="playerName" placeholder="Enter your name">
+
+<label>Game UID</label>
+<input id="gameUid" placeholder="Enter game UID">
+
+<label>Phone Number</label>
+<input id="phone" type="tel" placeholder="Enter phone number">
+
+<label>Select Tournament</label>
+<select id="tournamentSelect"></select>
+
+<button class="primary full" onclick="registerPlayer()">
+  Register Now
+</button>
+
+<p id="registerMessage"></p>
+</div>
+
+</section>
+
+
+<!-- ADMIN -->
 <section id="admin" class="hidden">
-<div class="card"><h2>🔐 Admin Panel</h2><p class="muted">Demo admin panel. Data is saved in this browser using localStorage.</p><button class="btn primary" onclick="showRegistrations()">View Registrations</button> <button class="btn danger" onclick="clearRegistrations()">Clear Data</button></div>
-<div class="card"><h2>📋 Registrations</h2><div id="registrations"></div></div>
+
+<div class="card">
+<h2>🔐 Admin Panel</h2>
+
+<input id="adminPassword" type="password"
+placeholder="Enter admin password">
+
+<button class="primary full" onclick="adminLogin()">
+Login
+</button>
+
+<p id="adminMessage"></p>
+</div>
+
+<div id="adminArea" class="hidden">
+
+<div class="card">
+<h3>➕ Create Tournament</h3>
+
+<label>Tournament Name</label>
+<input id="newName" placeholder="e.g. Battle Royale">
+
+<label>Game</label>
+<input id="newGame" placeholder="e.g. Free Fire">
+
+<label>Entry Fee</label>
+<input id="newFee" type="number" placeholder="0">
+
+<label>Prize Pool</label>
+<input id="newPrize" type="number" placeholder="1000">
+
+<label>Maximum Players</label>
+<input id="newPlayers" type="number" placeholder="50">
+
+<button class="success full" onclick="createTournament()">
+Create Tournament
+</button>
+</div>
+
+<div class="card">
+<h3>📋 Registered Players</h3>
+<div id="playerList"></div>
+</div>
+
+</div>
+
 </section>
+
 </main>
 
-<div class="bottom"><button onclick="page('home')">🏠<br>Home</button><button onclick="page('tournaments')">🏆<br>Tournaments</button><button onclick="page('admin')">⚙️<br>Admin</button></div>
+<footer>
+  BattleZone © 2026
+</footer>
 
-<div class="modal" id="joinModal"><div class="modalbox">
-<h2>📝 Join Tournament</h2>
-<label>Tournament</label><select id="tournament"></select>
-<label>Player / Team Name</label><input id="player" placeholder="Enter name">
-<label>Game UID</label><input id="uid" placeholder="Enter game UID">
-<label>WhatsApp Number</label><input id="phone" type="tel" placeholder="10-digit mobile number">
-<label>Team Size</label><select id="size"><option>Solo</option><option>Duo</option><option>Squad</option></select>
-<button class="btn primary" style="width:100%" onclick="register()">✅ Submit Registration</button>
-<button class="btn dark" style="width:100%;margin-top:8px" onclick="closeJoin()">Cancel</button>
-</div></div>
-<div class="toast" id="toast"></div>
 
 <script>
-const tournaments=[
-{name:"Free Fire Championship",fee:"₹50",prize:"₹5,000",date:"30 August 2026",players:"48/100"},
-{name:"BGMI Battle Cup",fee:"₹100",prize:"₹10,000",date:"1 September 2026",players:"62/100"},
-{name:"COD Mobile League",fee:"₹50",prize:"₹3,000",date:"5 September 2026",players:"31/64"}
+
+const defaultTournaments = [
+ {
+   id:1,
+   name:"BattleZone Free Fire Cup",
+   game:"Free Fire",
+   fee:20,
+   prize:1000,
+   maxPlayers:50
+ },
+ {
+   id:2,
+   name:"BGMI Championship",
+   game:"BGMI",
+   fee:30,
+   prize:2000,
+   maxPlayers:100
+ }
 ];
 
-function page(id){document.querySelectorAll("section").forEach(s=>s.classList.add("hidden"));document.getElementById(id).classList.remove("hidden");if(id==="tournaments")render();if(id==="admin")showRegistrations();scrollTo(0,0)}
-function render(){document.getElementById("tourList").innerHTML=tournaments.map((t,i)=>`<div class="card"><span class="badge">OPEN</span><h2>🎮 ${t.name}</h2><div class="info">💰 Entry Fee: ${t.fee}<br>🏆 Prize Pool: ${t.prize}<br>👥 Players: ${t.players}<br>📅 Date: ${t.date}</div><br><button class="btn primary" onclick="openJoin(${i})">Join Tournament</button></div>`).join("")}
-function openJoin(x){const s=document.getElementById("tournament");s.innerHTML=tournaments.map(t=>`<option>${t.name}</option>`).join("");if(typeof x==="number")s.selectedIndex=x;document.getElementById("joinModal").classList.add("show")}
-function closeJoin(){document.getElementById("joinModal").classList.remove("show")}
-function register(){
-const player=document.getElementById("player").value.trim(),uid=document.getElementById("uid").value.trim(),phone=document.getElementById("phone").value.trim();
-if(!player||!uid||phone.length<10){alert("Please fill Player/Team Name, Game UID and valid WhatsApp Number.");return}
-const data=JSON.parse(localStorage.getItem("bz_registrations")||"[]");
-data.push({tournament:document.getElementById("tournament").value,player,uid,phone,size:document.getElementById("size").value,time:new Date().toLocaleString()});
-localStorage.setItem("bz_registrations",JSON.stringify(data));
-document.getElementById("player").value="";document.getElementById("uid").value="";document.getElementById("phone").value="";
-closeJoin();toast("✅ Registration submitted!");document.getElementById("playerCount").textContent=248+data.length;
+let tournaments =
+JSON.parse(localStorage.getItem("bz_tournaments"))
+|| defaultTournaments;
+
+let players =
+JSON.parse(localStorage.getItem("bz_players"))
+|| [];
+
+
+/* PAGE SYSTEM */
+
+function showPage(page,btn){
+
+ document.querySelectorAll("main section")
+ .forEach(x=>x.classList.add("hidden"));
+
+ document.getElementById(page)
+ .classList.remove("hidden");
+
+ document.querySelectorAll(".nav button")
+ .forEach(x=>x.classList.remove("active"));
+
+ if(btn) btn.classList.add("active");
+
+ renderTournaments();
 }
-function showRegistrations(){
-const data=JSON.parse(localStorage.getItem("bz_registrations")||"[]"),box=document.getElementById("registrations");
-if(!data.length){box.innerHTML='<div class="empty">No registrations yet.</div>';return}
-box.innerHTML='<table><tr><th>Name</th><th>Tournament</th><th>UID</th><th>Phone</th></tr>'+data.map(r=>`<tr><td>${esc(r.player)}</td><td>${esc(r.tournament)}</td><td>${esc(r.uid)}</td><td>${esc(r.phone)}</td></tr>`).join("")+'</table>';
+
+
+/* TOURNAMENT LIST */
+
+function renderTournaments(){
+
+ const list=document.getElementById("tournamentList");
+ const select=document.getElementById("tournamentSelect");
+
+ list.innerHTML="";
+ select.innerHTML='<option value="">Select Tournament</option>';
+
+ tournaments.forEach(t=>{
+
+   const joined =
+   players.filter(p=>p.tournamentId==t.id).length;
+
+   list.innerHTML += `
+   <div class="card tournament">
+
+     <span class="badge">${t.game}</span>
+
+     <h3>${t.name}</h3>
+
+     <p>💰 Prize Pool: ₹${t.prize}</p>
+     <p>🎟 Entry Fee: ₹${t.fee}</p>
+     <p>👥 Players: ${joined}/${t.maxPlayers}</p>
+
+     <button class="primary full"
+     onclick="openRegistration(${t.id})">
+       Join Tournament
+     </button>
+
+   </div>
+   `;
+
+   select.innerHTML += `
+   <option value="${t.id}">
+     ${t.name}
+   </option>
+   `;
+ });
+
+ document.getElementById("totalTournaments")
+ .innerText=tournaments.length;
+
+ document.getElementById("totalPlayers")
+ .innerText=players.length;
 }
-function clearRegistrations(){if(confirm("Delete all registrations from this device?")){localStorage.removeItem("bz_registrations");showRegistrations();toast("Data cleared");}}
-function esc(s){return String(s).replace(/[&<>"']/g,m=>({"&":"&amp;","<":"&lt;",">":"&gt;",'"':"&quot;","'":"&#039;"}[m]))}
-function toast(m){const t=document.getElementById("toast");t.textContent=m;t.style.display="block";setTimeout(()=>t.style.display="none",2500)}
-render();
+
+
+/* OPEN REGISTRATION */
+
+function openRegistration(id){
+
+ showPage("register");
+
+ document.getElementById("tournamentSelect")
+ .value=id;
+
+ window.scrollTo(0,0);
+}
+
+
+/* PLAYER REGISTER */
+
+function registerPlayer(){
+
+ const name=
+ document.getElementById("playerName").value.trim();
+
+ const uid=
+ document.getElementById("gameUid").value.trim();
+
+ const phone=
+ document.getElementById("phone").value.trim();
+
+ const tournamentId=
+ document.getElementById("tournamentSelect").value;
+
+ const msg=
+ document.getElementById("registerMessage");
+
+ if(!name || !uid || !phone || !tournamentId){
+
+   msg.innerHTML=
+   "❌ Please fill all details.";
+
+   return;
+ }
+
+ const tournament=
+ tournaments.find(t=>t.id==tournamentId);
+
+ const joined=
+ players.filter(p=>p.tournamentId==tournamentId).length;
+
+ if(joined >= tournament.maxPlayers){
+
+   msg.innerHTML=
+   "❌ Tournament is full.";
+
+   return;
+ }
+
+ players.push({
+   id:Date.now(),
+   name:name,
+   uid:uid,
+   phone:phone,
+   tournamentId:Number(tournamentId),
+   tournament:tournament.name
+ });
+
+ localStorage.setItem(
+   "bz_players",
+   JSON.stringify(players)
+ );
+
+ msg.innerHTML=
+ "✅ Registration successful!";
+
+ document.getElementById("playerName").value="";
+ document.getElementById("gameUid").value="";
+ document.getElementById("phone").value="";
+
+ renderTournaments();
+}
+
+
+/* ADMIN LOGIN */
+
+function adminLogin(){
+
+ const password=
+ document.getElementById("adminPassword").value;
+
+ if(password==="0191"){
+
+   document.getElementById("adminArea")
+   .classList.remove("hidden");
+
+   document.getElementById("adminMessage")
+   .innerHTML="✅ Admin Login Successful";
+
+   renderPlayers();
+
+ }else{
+
+   document.getElementById("adminMessage")
+   .innerHTML="❌ Wrong password";
+
+ }
+}
+
+
+/* CREATE TOURNAMENT */
+
+function createTournament(){
+
+ const name=
+ document.getElementById("newName").value.trim();
+
+ const game=
+ document.getElementById("newGame").value.trim();
+
+ const fee=
+ Number(document.getElementById("newFee").value);
+
+ const prize=
+ Number(document.getElementById("newPrize").value);
+
+ const maxPlayers=
+ Number(document.getElementById("newPlayers").value);
+
+ if(!name || !game || !maxPlayers){
+
+   alert("Please fill required fields.");
+   return;
+ }
+
+ tournaments.push({
+   id:Date.now(),
+   name:name,
+   game:game,
+   fee:fee,
+   prize:prize,
+   maxPlayers:maxPlayers
+ });
+
+ localStorage.setItem(
+   "bz_tournaments",
+   JSON.stringify(tournaments)
+ );
+
+ alert("Tournament created successfully!");
+
+ document.getElementById("newName").value="";
+ document.getElementById("newGame").value="";
+ document.getElementById("newFee").value="";
+ document.getElementById("newPrize").value="";
+ document.getElementById("newPlayers").value="";
+
+ renderTournaments();
+}
+
+
+/* PLAYER LIST */
+
+function renderPlayers(){
+
+ const box=
+ document.getElementById("playerList");
+
+ if(players.length===0){
+
+   box.innerHTML=
+   '<p class="muted">No players registered.</p>';
+
+   return;
+ }
+
+ box.innerHTML="";
+
+ players.forEach((p,index)=>{
+
+   box.innerHTML += `
+   <div class="card">
+
+     <div class="row">
+       <strong>${p.name}</strong>
+       <span class="badge">${p.tournament}</span>
+     </div>
+
+     <p class="small">
+       UID: ${p.uid}<br>
+       Phone: ${p.phone}
+     </p>
+
+     <button class="danger"
+     onclick="deletePlayer(${index})">
+       Delete
+     </button>
+
+   </div>
+   `;
+
+ });
+}
+
+
+/* DELETE PLAYER */
+
+function deletePlayer(index){
+
+ if(confirm("Delete this player?")){
+
+   players.splice(index,1);
+
+   localStorage.setItem(
+     "bz_players",
+     JSON.stringify(players)
+   );
+
+   renderPlayers();
+   renderTournaments();
+ }
+}
+
+
+/* START */
+
+renderTournaments();
+
 </script>
+
 </body>
-</html>
+  </html>
