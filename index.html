@@ -3,41 +3,49 @@
 <head>
 <meta charset="UTF-8">
 <meta name="viewport" content="width=device-width,initial-scale=1.0">
+
 <title>BattleZone Tournament</title>
 
 <style>
 *{box-sizing:border-box}
+
 body{
   margin:0;
   font-family:Arial,sans-serif;
   background:#080b12;
   color:#fff;
 }
+
 header{
   background:linear-gradient(135deg,#111827,#172554);
   padding:25px 15px;
   text-align:center;
   border-bottom:1px solid #263248;
 }
+
 header h1{
   margin:0;
   font-size:30px;
 }
+
 header p{
   color:#9ca3af;
   margin:8px 0 0;
 }
+
 main{
   max-width:700px;
   margin:auto;
   padding:18px;
 }
+
 .nav{
   display:grid;
   grid-template-columns:repeat(4,1fr);
   gap:7px;
   margin-bottom:18px;
 }
+
 button{
   border:0;
   border-radius:10px;
@@ -45,15 +53,18 @@ button{
   font-weight:bold;
   cursor:pointer;
 }
+
 .nav button{
   background:#151c2b;
   color:#fff;
 }
+
 .nav button.active,
 .primary{
   background:#2563eb;
   color:#fff;
 }
+
 .card{
   background:#111827;
   border:1px solid #273449;
@@ -61,25 +72,30 @@ button{
   padding:17px;
   margin-bottom:13px;
 }
+
 .card h2,.card h3{
   margin-top:0;
 }
+
 .stats{
   display:grid;
   grid-template-columns:repeat(3,1fr);
   gap:10px;
 }
+
 .stat{
   background:#151c2b;
   padding:15px 5px;
   text-align:center;
   border-radius:12px;
 }
+
 .stat b{
   display:block;
   font-size:22px;
   color:#60a5fa;
 }
+
 input,select{
   width:100%;
   padding:13px;
@@ -90,24 +106,30 @@ input,select{
   color:white;
   font-size:15px;
 }
+
 label{
   color:#cbd5e1;
   font-size:14px;
 }
+
 .full{
   width:100%;
 }
+
 .danger{
   background:#dc2626;
   color:white;
 }
+
 .success{
   background:#16a34a;
   color:white;
 }
+
 .muted{
   color:#94a3b8;
 }
+
 .badge{
   display:inline-block;
   padding:5px 9px;
@@ -116,32 +138,65 @@ label{
   color:#60a5fa;
   font-size:12px;
 }
+
 .hidden{
   display:none;
 }
+
 .hero{
   text-align:center;
   padding:15px 0 25px;
 }
+
 .hero h2{
   font-size:26px;
 }
+
 .tournament{
   position:relative;
 }
+
 .row{
   display:flex;
   justify-content:space-between;
   gap:10px;
   align-items:center;
 }
+
 .small{
   font-size:13px;
 }
+
 footer{
   text-align:center;
   padding:25px;
   color:#64748b;
+}
+
+.message{
+  padding:10px;
+  margin-top:10px;
+  border-radius:8px;
+}
+
+.successMsg{
+  background:#064e3b;
+  color:#6ee7b7;
+}
+
+.errorMsg{
+  background:#7f1d1d;
+  color:#fecaca;
+}
+
+.logout{
+  background:#dc2626;
+  color:white;
+  float:right;
+}
+
+.clear{
+  clear:both;
 }
 </style>
 </head>
@@ -156,134 +211,305 @@ footer{
 <main>
 
 <div class="nav">
-  <button class="active" onclick="showPage('home',this)">Home</button>
-  <button onclick="showPage('tournaments',this)">Tournaments</button>
-  <button onclick="showPage('register',this)">Register</button>
-  <button onclick="showPage('admin',this)">Admin</button>
+
+<button class="active"
+onclick="showPage('home',this)">
+Home
+</button>
+
+<button onclick="showPage('tournaments',this)">
+Tournaments
+</button>
+
+<button onclick="showPage('register',this)">
+Register
+</button>
+
+<button onclick="showPage('admin',this)">
+Admin
+</button>
+
 </div>
 
+
 <!-- HOME -->
+
 <section id="home">
 
 <div class="hero">
-  <h2>🔥 Compete. Win. Dominate.</h2>
-  <p class="muted">Join gaming tournaments and win exciting prizes.</p>
-  <button class="primary" onclick="showPage('tournaments')">
-    View Tournaments
-  </button>
+
+<h2>🔥 Compete. Win. Dominate.</h2>
+
+<p class="muted">
+Join gaming tournaments and win exciting prizes.
+</p>
+
+<button class="primary"
+onclick="showPage('tournaments')">
+
+View Tournaments
+
+</button>
+
 </div>
 
+
 <div class="stats">
-  <div class="stat">
-    <b id="totalTournaments">0</b>
-    Tournaments
-  </div>
-  <div class="stat">
-    <b id="totalPlayers">0</b>
-    Players
-  </div>
-  <div class="stat">
-    <b>₹0</b>
-    Prize Pool
-  </div>
+
+<div class="stat">
+<b id="totalTournaments">0</b>
+Tournaments
+</div>
+
+<div class="stat">
+<b id="totalPlayers">0</b>
+Players
+</div>
+
+<div class="stat">
+<b id="totalPrize">₹0</b>
+Prize Pool
+</div>
+
 </div>
 
 <br>
 
+
 <div class="card">
-  <h3>🎮 How to Play</h3>
-  <p>1️⃣ Select a tournament</p>
-  <p>2️⃣ Enter your player details</p>
-  <p>3️⃣ Join the match</p>
-  <p>4️⃣ Win and climb the leaderboard</p>
+
+<h3>🎮 How to Play</h3>
+
+<p>1️⃣ Select a tournament</p>
+<p>2️⃣ Enter your player details</p>
+<p>3️⃣ Register for the match</p>
+<p>4️⃣ Join and win</p>
+
 </div>
 
 </section>
 
 
+
 <!-- TOURNAMENTS -->
+
 <section id="tournaments" class="hidden">
 
 <h2>🏆 Available Tournaments</h2>
 
-<div id="tournamentList"></div>
+<div id="tournamentList">
+
+<p class="muted">
+Loading tournaments...
+</p>
+
+</div>
 
 </section>
+
 
 
 <!-- REGISTER -->
+
 <section id="register" class="hidden">
 
 <div class="card">
+
 <h2>📝 Tournament Registration</h2>
 
+
 <label>Player Name</label>
-<input id="playerName" placeholder="Enter your name">
+
+<input
+id="playerName"
+placeholder="Enter your name"
+>
+
 
 <label>Game UID</label>
-<input id="gameUid" placeholder="Enter game UID">
+
+<input
+id="gameUid"
+placeholder="Enter game UID"
+>
+
 
 <label>Phone Number</label>
-<input id="phone" type="tel" placeholder="Enter phone number">
+
+<input
+id="phone"
+type="tel"
+placeholder="Enter phone number"
+>
+
 
 <label>Select Tournament</label>
-<select id="tournamentSelect"></select>
 
-<button class="primary full" onclick="registerPlayer()">
-  Register Now
+<select id="tournamentSelect">
+
+<option value="">
+Select Tournament
+</option>
+
+</select>
+
+
+<button
+class="primary full"
+onclick="registerPlayer()">
+
+Register Now
+
 </button>
 
-<p id="registerMessage"></p>
+
+<div id="registerMessage"></div>
+
 </div>
 
 </section>
 
 
+
 <!-- ADMIN -->
+
 <section id="admin" class="hidden">
 
 <div class="card">
-<h2>🔐 Admin Panel</h2>
 
-<input id="adminPassword" type="password"
-placeholder="Enter admin password">
+<h2>🔐 Admin Login</h2>
 
-<button class="primary full" onclick="adminLogin()">
+
+<label>Email</label>
+
+<input
+id="adminEmail"
+type="email"
+placeholder="Admin email"
+>
+
+
+<label>Password</label>
+
+<input
+id="adminPassword"
+type="password"
+placeholder="Admin password"
+>
+
+
+<button
+class="primary full"
+onclick="adminLogin()">
+
 Login
+
 </button>
 
-<p id="adminMessage"></p>
+
+<div id="adminMessage"></div>
+
 </div>
+
+
 
 <div id="adminArea" class="hidden">
 
+
 <div class="card">
+
+<button
+class="logout"
+onclick="adminLogout()">
+
+Logout
+
+</button>
+
+<div class="clear"></div>
+
+<h2>⚙️ Admin Panel</h2>
+
+</div>
+
+
+
+<!-- CREATE TOURNAMENT -->
+
+<div class="card">
+
 <h3>➕ Create Tournament</h3>
 
+
 <label>Tournament Name</label>
-<input id="newName" placeholder="e.g. Battle Royale">
+
+<input
+id="newName"
+placeholder="e.g. Battle Royale"
+>
+
 
 <label>Game</label>
-<input id="newGame" placeholder="e.g. Free Fire">
+
+<input
+id="newGame"
+placeholder="e.g. Free Fire"
+>
+
 
 <label>Entry Fee</label>
-<input id="newFee" type="number" placeholder="0">
+
+<input
+id="newFee"
+type="number"
+placeholder="20"
+>
+
 
 <label>Prize Pool</label>
-<input id="newPrize" type="number" placeholder="1000">
+
+<input
+id="newPrize"
+type="number"
+placeholder="1000"
+>
+
 
 <label>Maximum Players</label>
-<input id="newPlayers" type="number" placeholder="50">
 
-<button class="success full" onclick="createTournament()">
+<input
+id="newPlayers"
+type="number"
+placeholder="50"
+>
+
+
+<button
+class="success full"
+onclick="createTournament()">
+
 Create Tournament
+
 </button>
+
 </div>
+
+
+
+<!-- PLAYERS -->
 
 <div class="card">
-<h3>📋 Registered Players</h3>
-<div id="playerList"></div>
+
+<h3>👥 Registered Players</h3>
+
+<div id="playerList">
+
+Loading...
+
 </div>
+
+</div>
+
 
 </div>
 
@@ -291,331 +517,858 @@ Create Tournament
 
 </main>
 
+
 <footer>
-  BattleZone © 2026
+
+BattleZone © 2026
+
 </footer>
 
 
-<script>
 
-const defaultTournaments = [
- {
-   id:1,
-   name:"BattleZone Free Fire Cup",
-   game:"Free Fire",
-   fee:20,
-   prize:1000,
-   maxPlayers:50
- },
- {
-   id:2,
-   name:"BGMI Championship",
-   game:"BGMI",
-   fee:30,
-   prize:2000,
-   maxPlayers:100
- }
-];
+<!-- FIREBASE -->
 
-let tournaments =
-JSON.parse(localStorage.getItem("bz_tournaments"))
-|| defaultTournaments;
+<script type="module">
 
-let players =
-JSON.parse(localStorage.getItem("bz_players"))
-|| [];
+import { initializeApp }
+from "https://www.gstatic.com/firebasejs/12.1.0/firebase-app.js";
+
+import {
+getAuth,
+signInWithEmailAndPassword,
+signOut
+}
+from "https://www.gstatic.com/firebasejs/12.1.0/firebase-auth.js";
+
+import {
+getFirestore,
+collection,
+addDoc,
+getDocs,
+deleteDoc,
+doc,
+query,
+orderBy,
+serverTimestamp
+}
+from "https://www.gstatic.com/firebasejs/12.1.0/firebase-firestore.js";
 
 
-/* PAGE SYSTEM */
 
-function showPage(page,btn){
+/* =====================================
+   FIREBASE CONFIG
+   ===================================== */
 
- document.querySelectorAll("main section")
- .forEach(x=>x.classList.add("hidden"));
+const firebaseConfig = {
 
- document.getElementById(page)
- .classList.remove("hidden");
+  apiKey: "PASTE_YOUR_API_KEY_HERE",
 
- document.querySelectorAll(".nav button")
- .forEach(x=>x.classList.remove("active"));
+  authDomain:
+  "battlzone-ba07f.firebaseapp.com",
 
- if(btn) btn.classList.add("active");
+  projectId:
+  "battlzone-ba07f",
 
- renderTournaments();
+  storageBucket:
+  "battlzone-ba07f.firebasestorage.app",
+
+  messagingSenderId:
+  "193110804088",
+
+  appId:
+  "PASTE_YOUR_APP_ID_HERE"
+
+};
+
+
+
+/* =====================================
+   INITIALIZE FIREBASE
+   ===================================== */
+
+const app = initializeApp(firebaseConfig);
+
+const auth = getAuth(app);
+
+const db = getFirestore(app);
+
+
+
+/* =====================================
+   PAGE SYSTEM
+   ===================================== */
+
+window.showPage = function(page,btn){
+
+  document
+  .querySelectorAll("main section")
+  .forEach(x =>
+    x.classList.add("hidden")
+  );
+
+  document
+  .getElementById(page)
+  .classList.remove("hidden");
+
+
+  document
+  .querySelectorAll(".nav button")
+  .forEach(x =>
+    x.classList.remove("active")
+  );
+
+
+  if(btn){
+
+    btn.classList.add("active");
+
+  }
+
+
+  if(page === "tournaments"){
+
+    loadTournaments();
+
+  }
+
+
+  if(page === "register"){
+
+    loadTournamentSelect();
+
+  }
+
+};
+
+
+
+/* =====================================
+   LOAD TOURNAMENTS
+   ===================================== */
+
+async function loadTournaments(){
+
+  const list =
+  document.getElementById("tournamentList");
+
+  list.innerHTML =
+  "<p class='muted'>Loading...</p>";
+
+
+  try{
+
+    const snapshot =
+    await getDocs(
+      collection(db,"tournaments")
+    );
+
+
+    list.innerHTML="";
+
+    let count=0;
+    let prizeTotal=0;
+
+
+    snapshot.forEach(item=>{
+
+      const t = item.data();
+
+      count++;
+
+      prizeTotal += Number(t.prize || 0);
+
+
+      list.innerHTML += `
+
+      <div class="card tournament">
+
+        <span class="badge">
+        ${escapeHTML(t.game)}
+        </span>
+
+        <h3>
+        ${escapeHTML(t.name)}
+        </h3>
+
+        <p>
+        💰 Prize Pool: ₹${t.prize}
+        </p>
+
+        <p>
+        🎟 Entry Fee: ₹${t.fee}
+        </p>
+
+        <p>
+        👥 Maximum Players: ${t.maxPlayers}
+        </p>
+
+        <button
+        class="primary full"
+        onclick="openRegistration('${item.id}')">
+
+        Join Tournament
+
+        </button>
+
+      </div>
+
+      `;
+
+    });
+
+
+    if(count===0){
+
+      list.innerHTML =
+      "<p class='muted'>No tournaments available.</p>";
+
+    }
+
+
+    document
+    .getElementById("totalTournaments")
+    .innerText=count;
+
+
+    document
+    .getElementById("totalPrize")
+    .innerText="₹"+prizeTotal;
+
+
+    await updatePlayerCount();
+
+
+  }catch(error){
+
+    console.error(error);
+
+    list.innerHTML =
+    "<p class='errorMsg'>Unable to load tournaments.</p>";
+
+  }
+
 }
 
 
-/* TOURNAMENT LIST */
 
-function renderTournaments(){
+/* =====================================
+   LOAD SELECT
+   ===================================== */
 
- const list=document.getElementById("tournamentList");
- const select=document.getElementById("tournamentSelect");
+async function loadTournamentSelect(){
 
- list.innerHTML="";
- select.innerHTML='<option value="">Select Tournament</option>';
+  const select =
+  document.getElementById("tournamentSelect");
 
- tournaments.forEach(t=>{
 
-   const joined =
-   players.filter(p=>p.tournamentId==t.id).length;
+  select.innerHTML =
+  '<option value="">Loading...</option>';
 
-   list.innerHTML += `
-   <div class="card tournament">
 
-     <span class="badge">${t.game}</span>
+  const snapshot =
+  await getDocs(
+    collection(db,"tournaments")
+  );
 
-     <h3>${t.name}</h3>
 
-     <p>💰 Prize Pool: ₹${t.prize}</p>
-     <p>🎟 Entry Fee: ₹${t.fee}</p>
-     <p>👥 Players: ${joined}/${t.maxPlayers}</p>
+  select.innerHTML =
+  '<option value="">Select Tournament</option>';
 
-     <button class="primary full"
-     onclick="openRegistration(${t.id})">
-       Join Tournament
-     </button>
 
-   </div>
-   `;
+  snapshot.forEach(item=>{
 
-   select.innerHTML += `
-   <option value="${t.id}">
-     ${t.name}
-   </option>
-   `;
- });
+    const t=item.data();
 
- document.getElementById("totalTournaments")
- .innerText=tournaments.length;
 
- document.getElementById("totalPlayers")
- .innerText=players.length;
+    select.innerHTML += `
+
+    <option value="${item.id}">
+    ${escapeHTML(t.name)}
+    </option>
+
+    `;
+
+  });
+
 }
 
 
-/* OPEN REGISTRATION */
 
-function openRegistration(id){
+/* =====================================
+   OPEN REGISTRATION
+   ===================================== */
 
- showPage("register");
+window.openRegistration = function(id){
 
- document.getElementById("tournamentSelect")
- .value=id;
+  showPage("register");
 
- window.scrollTo(0,0);
+  setTimeout(()=>{
+
+    document
+    .getElementById("tournamentSelect")
+    .value=id;
+
+  },500);
+
+  window.scrollTo(0,0);
+
+};
+
+
+
+/* =====================================
+   REGISTER PLAYER
+   ===================================== */
+
+window.registerPlayer = async function(){
+
+  const name =
+  document
+  .getElementById("playerName")
+  .value.trim();
+
+
+  const uid =
+  document
+  .getElementById("gameUid")
+  .value.trim();
+
+
+  const phone =
+  document
+  .getElementById("phone")
+  .value.trim();
+
+
+  const tournamentId =
+  document
+  .getElementById("tournamentSelect")
+  .value;
+
+
+  const msg =
+  document
+  .getElementById("registerMessage");
+
+
+  if(!name || !uid || !phone || !tournamentId){
+
+    msg.className="message errorMsg";
+
+    msg.innerHTML=
+    "❌ Please fill all details.";
+
+    return;
+
+  }
+
+
+  try{
+
+    const tournamentDoc =
+    await getDocs(
+      collection(db,"tournaments")
+    );
+
+
+    let tournament=null;
+
+
+    tournamentDoc.forEach(item=>{
+
+      if(item.id===tournamentId){
+
+        tournament={
+          id:item.id,
+          ...item.data()
+        };
+
+      }
+
+    });
+
+
+    if(!tournament){
+
+      msg.className="message errorMsg";
+
+      msg.innerHTML=
+      "❌ Tournament not found.";
+
+      return;
+
+    }
+
+
+    await addDoc(
+      collection(db,"players"),
+      {
+
+        name:name,
+
+        uid:uid,
+
+        phone:phone,
+
+        tournamentId:tournamentId,
+
+        tournament:tournament.name,
+
+        createdAt:serverTimestamp()
+
+      }
+    );
+
+
+    msg.className=
+    "message successMsg";
+
+
+    msg.innerHTML=
+    "✅ Registration successful!";
+
+
+    document
+    .getElementById("playerName")
+    .value="";
+
+
+    document
+    .getElementById("gameUid")
+    .value="";
+
+
+    document
+    .getElementById("phone")
+    .value="";
+
+
+    await updatePlayerCount();
+
+
+  }catch(error){
+
+    console.error(error);
+
+    msg.className=
+    "message errorMsg";
+
+
+    msg.innerHTML=
+    "❌ Registration failed. Please try again.";
+
+  }
+
+};
+
+
+
+/* =====================================
+   ADMIN LOGIN
+   ===================================== */
+
+window.adminLogin = async function(){
+
+  const email =
+  document
+  .getElementById("adminEmail")
+  .value.trim();
+
+
+  const password =
+  document
+  .getElementById("adminPassword")
+  .value;
+
+
+  const msg =
+  document
+  .getElementById("adminMessage");
+
+
+  if(!email || !password){
+
+    msg.className="message errorMsg";
+
+    msg.innerHTML=
+    "❌ Enter email and password.";
+
+    return;
+
+  }
+
+
+  try{
+
+    await signInWithEmailAndPassword(
+      auth,
+      email,
+      password
+    );
+
+
+    msg.className=
+    "message successMsg";
+
+
+    msg.innerHTML=
+    "✅ Admin login successful!";
+
+
+    document
+    .getElementById("adminArea")
+    .classList.remove("hidden");
+
+
+    await renderPlayers();
+
+
+  }catch(error){
+
+    console.error(error);
+
+    msg.className=
+    "message errorMsg";
+
+
+    msg.innerHTML=
+    "❌ Wrong email or password.";
+
+  }
+
+};
+
+
+
+/* =====================================
+   ADMIN LOGOUT
+   ===================================== */
+
+window.adminLogout = async function(){
+
+  await signOut(auth);
+
+  document
+  .getElementById("adminArea")
+  .classList.add("hidden");
+
+};
+
+
+
+/* =====================================
+   CREATE TOURNAMENT
+   ===================================== */
+
+window.createTournament = async function(){
+
+  const name =
+  document
+  .getElementById("newName")
+  .value.trim();
+
+
+  const game =
+  document
+  .getElementById("newGame")
+  .value.trim();
+
+
+  const fee =
+  Number(
+    document
+    .getElementById("newFee")
+    .value
+  );
+
+
+  const prize =
+  Number(
+    document
+    .getElementById("newPrize")
+    .value
+  );
+
+
+  const maxPlayers =
+  Number(
+    document
+    .getElementById("newPlayers")
+    .value
+  );
+
+
+  if(!name || !game || !maxPlayers){
+
+    alert("Please fill required fields.");
+
+    return;
+
+  }
+
+
+  try{
+
+    await addDoc(
+      collection(db,"tournaments"),
+      {
+
+        name:name,
+
+        game:game,
+
+        fee:fee,
+
+        prize:prize,
+
+        maxPlayers:maxPlayers,
+
+        createdAt:serverTimestamp()
+
+      }
+    );
+
+
+    alert(
+      "✅ Tournament created successfully!"
+    );
+
+
+    document
+    .getElementById("newName")
+    .value="";
+
+
+    document
+    .getElementById("newGame")
+    .value="";
+
+
+    document
+    .getElementById("newFee")
+    .value="";
+
+
+    document
+    .getElementById("newPrize")
+    .value="";
+
+
+    document
+    .getElementById("newPlayers")
+    .value="";
+
+
+    await loadTournaments();
+
+
+  }catch(error){
+
+    console.error(error);
+
+    alert(
+      "❌ Tournament create failed."
+    );
+
+  }
+
+};
+
+
+
+/* =====================================
+   RENDER PLAYERS
+   ===================================== */
+
+async function renderPlayers(){
+
+  const box =
+  document
+  .getElementById("playerList");
+
+
+  box.innerHTML=
+  "<p class='muted'>Loading players...</p>";
+
+
+  try{
+
+    const snapshot =
+    await getDocs(
+      collection(db,"players")
+    );
+
+
+    box.innerHTML="";
+
+
+    if(snapshot.empty){
+
+      box.innerHTML=
+      "<p class='muted'>No players registered.</p>";
+
+      return;
+
+    }
+
+
+    snapshot.forEach(item=>{
+
+      const p=item.data();
+
+
+      box.innerHTML += `
+
+      <div class="card">
+
+        <div class="row">
+
+          <strong>
+          ${escapeHTML(p.name)}
+          </strong>
+
+          <span class="badge">
+          ${escapeHTML(p.tournament)}
+          </span>
+
+        </div>
+
+
+        <p class="small">
+
+        UID:
+        ${escapeHTML(p.uid)}
+
+        <br>
+
+        Phone:
+        ${escapeHTML(p.phone)}
+
+        </p>
+
+
+        <button
+        class="danger"
+        onclick="deletePlayer('${item.id}')">
+
+        Delete
+
+        </button>
+
+      </div>
+
+      `;
+
+    });
+
+
+    document
+    .getElementById("totalPlayers")
+    .innerText=snapshot.size;
+
+
+  }catch(error){
+
+    console.error(error);
+
+    box.innerHTML=
+    "<p class='errorMsg'>Unable to load players.</p>";
+
+  }
+
 }
 
 
-/* PLAYER REGISTER */
 
-function registerPlayer(){
+/* =====================================
+   DELETE PLAYER
+   ===================================== */
 
- const name=
- document.getElementById("playerName").value.trim();
+window.deletePlayer = async function(id){
 
- const uid=
- document.getElementById("gameUid").value.trim();
+  if(!confirm("Delete this player?")){
 
- const phone=
- document.getElementById("phone").value.trim();
+    return;
 
- const tournamentId=
- document.getElementById("tournamentSelect").value;
+  }
 
- const msg=
- document.getElementById("registerMessage");
 
- if(!name || !uid || !phone || !tournamentId){
+  try{
 
-   msg.innerHTML=
-   "❌ Please fill all details.";
+    await deleteDoc(
+      doc(db,"players",id)
+    );
 
-   return;
- }
 
- const tournament=
- tournaments.find(t=>t.id==tournamentId);
+    await renderPlayers();
 
- const joined=
- players.filter(p=>p.tournamentId==tournamentId).length;
+    await updatePlayerCount();
 
- if(joined >= tournament.maxPlayers){
 
-   msg.innerHTML=
-   "❌ Tournament is full.";
+  }catch(error){
 
-   return;
- }
+    console.error(error);
 
- players.push({
-   id:Date.now(),
-   name:name,
-   uid:uid,
-   phone:phone,
-   tournamentId:Number(tournamentId),
-   tournament:tournament.name
- });
+    alert(
+      "❌ Delete failed."
+    );
 
- localStorage.setItem(
-   "bz_players",
-   JSON.stringify(players)
- );
+  }
 
- msg.innerHTML=
- "✅ Registration successful!";
+};
 
- document.getElementById("playerName").value="";
- document.getElementById("gameUid").value="";
- document.getElementById("phone").value="";
 
- renderTournaments();
+
+/* =====================================
+   PLAYER COUNT
+   ===================================== */
+
+async function updatePlayerCount(){
+
+  try{
+
+    const snapshot =
+    await getDocs(
+      collection(db,"players")
+    );
+
+
+    document
+    .getElementById("totalPlayers")
+    .innerText=snapshot.size;
+
+  }catch(error){
+
+    console.log(error);
+
+  }
+
 }
 
 
-/* ADMIN LOGIN */
 
-function adminLogin(){
+/* =====================================
+   SECURITY HELPER
+   ===================================== */
 
- const password=
- document.getElementById("adminPassword").value;
+function escapeHTML(value){
 
- if(password==="0191"){
+  return String(value || "")
+  .replace(/&/g,"&amp;")
+  .replace(/</g,"&lt;")
+  .replace(/>/g,"&gt;")
+  .replace(/"/g,"&quot;")
+  .replace(/'/g,"&#039;");
 
-   document.getElementById("adminArea")
-   .classList.remove("hidden");
-
-   document.getElementById("adminMessage")
-   .innerHTML="✅ Admin Login Successful";
-
-   renderPlayers();
-
- }else{
-
-   document.getElementById("adminMessage")
-   .innerHTML="❌ Wrong password";
-
- }
 }
 
 
-/* CREATE TOURNAMENT */
 
-function createTournament(){
+/* =====================================
+   START
+   ===================================== */
 
- const name=
- document.getElementById("newName").value.trim();
-
- const game=
- document.getElementById("newGame").value.trim();
-
- const fee=
- Number(document.getElementById("newFee").value);
-
- const prize=
- Number(document.getElementById("newPrize").value);
-
- const maxPlayers=
- Number(document.getElementById("newPlayers").value);
-
- if(!name || !game || !maxPlayers){
-
-   alert("Please fill required fields.");
-   return;
- }
-
- tournaments.push({
-   id:Date.now(),
-   name:name,
-   game:game,
-   fee:fee,
-   prize:prize,
-   maxPlayers:maxPlayers
- });
-
- localStorage.setItem(
-   "bz_tournaments",
-   JSON.stringify(tournaments)
- );
-
- alert("Tournament created successfully!");
-
- document.getElementById("newName").value="";
- document.getElementById("newGame").value="";
- document.getElementById("newFee").value="";
- document.getElementById("newPrize").value="";
- document.getElementById("newPlayers").value="";
-
- renderTournaments();
-}
-
-
-/* PLAYER LIST */
-
-function renderPlayers(){
-
- const box=
- document.getElementById("playerList");
-
- if(players.length===0){
-
-   box.innerHTML=
-   '<p class="muted">No players registered.</p>';
-
-   return;
- }
-
- box.innerHTML="";
-
- players.forEach((p,index)=>{
-
-   box.innerHTML += `
-   <div class="card">
-
-     <div class="row">
-       <strong>${p.name}</strong>
-       <span class="badge">${p.tournament}</span>
-     </div>
-
-     <p class="small">
-       UID: ${p.uid}<br>
-       Phone: ${p.phone}
-     </p>
-
-     <button class="danger"
-     onclick="deletePlayer(${index})">
-       Delete
-     </button>
-
-   </div>
-   `;
-
- });
-}
-
-
-/* DELETE PLAYER */
-
-function deletePlayer(index){
-
- if(confirm("Delete this player?")){
-
-   players.splice(index,1);
-
-   localStorage.setItem(
-     "bz_players",
-     JSON.stringify(players)
-   );
-
-   renderPlayers();
-   renderTournaments();
- }
-}
-
-
-/* START */
-
-renderTournaments();
+loadTournaments();
 
 </script>
 
