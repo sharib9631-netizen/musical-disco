@@ -15,157 +15,211 @@
 body{
   margin:0;
   background:#08080c;
-  color:white;
+  color:#fff;
 }
 
 header{
   text-align:center;
-  padding:30px 15px;
+  padding:28px 15px;
   background:linear-gradient(135deg,#ff9800,#ff2d00);
 }
 
 header h1{
   margin:0;
   font-size:42px;
-  font-weight:800;
+  font-weight:900;
 }
 
 header p{
-  margin:10px 0 0;
-  font-size:20px;
+  margin:8px 0 0;
+  font-size:19px;
 }
 
 .container{
   width:95%;
-  max-width:700px;
+  max-width:750px;
   margin:25px auto;
 }
 
 .card{
   background:#17171d;
   border:1px solid #303039;
-  border-radius:25px;
-  padding:25px;
-  margin-bottom:25px;
+  border-radius:24px;
+  padding:22px;
+  margin-bottom:22px;
   box-shadow:0 5px 20px rgba(0,0,0,.35);
 }
 
 .card h2{
   margin-top:0;
   color:#ff9800;
-  font-size:30px;
+  font-size:28px;
 }
 
 input,
-select{
+select,
+textarea{
   width:100%;
-  padding:18px;
-  margin:10px 0;
-  border-radius:16px;
-  border:1px solid #38383f;
+  padding:16px;
+  margin:8px 0;
+  border-radius:15px;
+  border:1px solid #3a3a43;
   background:#0d0d11;
-  color:white;
-  font-size:18px;
+  color:#fff;
+  font-size:16px;
   outline:none;
 }
 
-input:focus,
-select:focus{
-  border-color:#ff9800;
+textarea{
+  min-height:100px;
+  resize:vertical;
 }
 
-select option{
-  background:#17171d;
-  color:white;
+input:focus,
+select:focus,
+textarea:focus{
+  border-color:#ff9800;
 }
 
 button{
   width:100%;
-  padding:18px;
-  margin-top:12px;
+  padding:16px;
+  margin-top:10px;
   border:0;
-  border-radius:16px;
+  border-radius:15px;
   background:linear-gradient(135deg,#ff9800,#ff2d00);
-  color:white;
-  font-size:20px;
+  color:#fff;
+  font-size:18px;
   font-weight:bold;
   cursor:pointer;
 }
 
-button:active{
-  transform:scale(.98);
+button.secondary{
+  background:#25252d;
+}
+
+button.danger{
+  background:#b71c1c;
+}
+
+button.green{
+  background:#137333;
 }
 
 .message{
   display:none;
-  padding:15px;
+  margin-top:12px;
+  padding:13px;
   border-radius:12px;
-  margin-top:15px;
   text-align:center;
   font-weight:bold;
 }
 
 .success{
   background:#123d20;
-  color:#54ff88;
-  border:1px solid #278b46;
+  color:#62ff91;
 }
 
 .error{
-  background:#421515;
+  background:#461515;
   color:#ff7777;
-  border:1px solid #a33;
 }
 
 .tournament{
   background:#0e0e13;
   border:1px solid #36363f;
   border-radius:20px;
-  padding:20px;
+  padding:18px;
   margin-top:15px;
 }
 
 .tournament h3{
   color:#ff9800;
   font-size:24px;
-  margin:10px 0 15px;
+  margin:12px 0;
 }
 
 .badge{
   display:inline-block;
-  background:#3d3000;
-  color:#ffc107;
-  padding:8px 14px;
+  padding:7px 13px;
   border-radius:20px;
-  font-size:14px;
+  font-size:13px;
   font-weight:bold;
+  background:#403000;
+  color:#ffc107;
+}
+
+.badge.live{
+  background:#123d20;
+  color:#52ff82;
+}
+
+.badge.completed{
+  background:#292929;
+  color:#bbb;
 }
 
 .info{
   background:#1b1b23;
+  border-radius:12px;
+  padding:11px;
+  margin:7px 0;
+}
+
+.room{
+  background:#201900;
+  border:1px solid #9b7200;
+  padding:14px;
   border-radius:14px;
-  padding:13px;
-  margin:8px 0;
-  font-size:17px;
+  margin-top:12px;
+}
+
+.winner{
+  background:linear-gradient(135deg,#332600,#17120a);
+  border:1px solid #d49a00;
+  padding:18px;
+  border-radius:18px;
+  margin-top:12px;
+  text-align:center;
+}
+
+.winner h3{
+  color:#ffd54f;
+  margin:5px;
+  font-size:25px;
 }
 
 .player{
   background:#0e0e13;
   border:1px solid #36363f;
-  border-radius:20px;
-  padding:20px;
-  margin-top:15px;
+  border-radius:18px;
+  padding:16px;
+  margin-top:12px;
 }
 
 .player h3{
   margin:0 0 10px;
-  font-size:22px;
 }
 
 .player p{
-  margin:8px 0;
+  margin:7px 0;
   color:#ddd;
-  font-size:16px;
+}
+
+.admin{
+  display:none;
+}
+
+.admin.show{
+  display:block;
+}
+
+.admin-title{
+  color:#ff5252 !important;
+}
+
+.hidden{
+  display:none !important;
 }
 
 .empty{
@@ -174,23 +228,45 @@ button:active{
   padding:20px;
 }
 
-footer{
-  text-align:center;
-  color:#777;
-  padding:30px 10px;
-  font-size:15px;
-}
-
-.small{
-  color:#999;
-  font-size:14px;
-  margin-top:5px;
-}
-
 .loading{
   text-align:center;
   color:#aaa;
   padding:15px;
+}
+
+.search{
+  margin-bottom:10px;
+}
+
+.stats{
+  display:grid;
+  grid-template-columns:repeat(3,1fr);
+  gap:8px;
+  margin-top:12px;
+}
+
+.stat{
+  background:#202027;
+  border-radius:13px;
+  text-align:center;
+  padding:12px 5px;
+}
+
+.stat b{
+  display:block;
+  font-size:20px;
+  color:#ff9800;
+}
+
+.stat span{
+  font-size:12px;
+  color:#aaa;
+}
+
+footer{
+  text-align:center;
+  color:#777;
+  padding:30px 10px;
 }
 
 @media(max-width:500px){
@@ -200,26 +276,19 @@ footer{
   }
 
   header p{
-    font-size:17px;
+    font-size:16px;
   }
 
   .card{
-    padding:20px;
-    border-radius:20px;
+    padding:18px;
   }
 
   .card h2{
-    font-size:27px;
+    font-size:25px;
   }
 
-  input,
-  select{
-    font-size:16px;
-    padding:16px;
-  }
-
-  button{
-    font-size:18px;
+  .stats{
+    grid-template-columns:1fr 1fr 1fr;
   }
 }
 </style>
@@ -234,201 +303,416 @@ footer{
 
 <div class="container">
 
-  <!-- CREATE TOURNAMENT -->
-  <div class="card">
+<!-- =====================================================
+     CREATE TOURNAMENT
+===================================================== -->
 
-    <h2>🏆 Create Tournament</h2>
+<div class="card">
 
-    <input
-      type="text"
-      id="tournamentName"
-      placeholder="Tournament Name"
-    >
+<h2>🏆 Create Tournament</h2>
 
-    <input
-      type="text"
-      id="gameName"
-      placeholder="Game Name"
-    >
+<input
+  id="tournamentName"
+  type="text"
+  placeholder="Tournament Name"
+>
 
-    <input
-      type="number"
-      id="entryFee"
-      placeholder="Entry Fee"
-      min="0"
-    >
+<input
+  id="gameName"
+  type="text"
+  placeholder="Game Name"
+>
 
-    <input
-      type="number"
-      id="prizePool"
-      placeholder="Prize Pool"
-      min="0"
-    >
+<input
+  id="entryFee"
+  type="number"
+  min="0"
+  placeholder="Entry Fee ₹"
+>
 
-    <select id="tournamentType">
-      <option value="">Select Tournament Type</option>
-      <option value="Solo">Solo</option>
-      <option value="Duo">Duo</option>
-      <option value="Squad">Squad</option>
-    </select>
+<input
+  id="prizePool"
+  type="number"
+  min="0"
+  placeholder="Prize Pool ₹"
+>
 
-    <button onclick="createTournament()">
-      Create Tournament
-    </button>
+<select id="tournamentType">
+  <option value="">Select Tournament Type</option>
+  <option value="Solo">Solo</option>
+  <option value="Duo">Duo</option>
+  <option value="Squad">Squad</option>
+</select>
 
-    <div id="tournamentMessage" class="message"></div>
+<button onclick="createTournament()">
+  🏆 Create Tournament
+</button>
 
-  </div>
-
-
-  <!-- PLAYER REGISTRATION -->
-  <div class="card">
-
-    <h2>👤 Player Registration</h2>
-
-    <input
-      type="text"
-      id="playerName"
-      placeholder="Player Name"
-    >
-
-    <input
-      type="text"
-      id="gameUID"
-      placeholder="Game UID"
-    >
-
-    <input
-      type="tel"
-      id="mobileNumber"
-      placeholder="Mobile Number"
-      maxlength="10"
-    >
-
-    <select id="playerTournament">
-      <option value="">Select Tournament</option>
-    </select>
-
-    <button onclick="registerPlayer()">
-      Register Player
-    </button>
-
-    <div id="playerMessage" class="message"></div>
-
-  </div>
-
-
-  <!-- AVAILABLE TOURNAMENTS -->
-  <div class="card">
-
-    <h2>🎮 Available Tournaments</h2>
-
-    <div id="tournamentList" class="loading">
-      Loading tournaments...
-    </div>
-
-  </div>
-
-
-  <!-- REGISTERED PLAYERS -->
-  <div class="card">
-
-    <h2>👥 Registered Players</h2>
-
-    <div id="playerList" class="loading">
-      Loading players...
-    </div>
-
-  </div>
+<div id="tournamentMessage" class="message"></div>
 
 </div>
 
 
+<!-- =====================================================
+     REGISTER PLAYER
+===================================================== -->
+
+<div class="card">
+
+<h2>👤 Player Registration</h2>
+
+<input
+  id="playerName"
+  type="text"
+  placeholder="Player Name"
+>
+
+<input
+  id="gameUID"
+  type="text"
+  placeholder="Game UID"
+>
+
+<input
+  id="mobileNumber"
+  type="tel"
+  maxlength="10"
+  placeholder="Mobile Number"
+>
+
+<select id="playerTournament">
+  <option value="">Select Tournament</option>
+</select>
+
+<button onclick="registerPlayer()">
+  🎮 Register Player
+</button>
+
+<div id="playerMessage" class="message"></div>
+
+</div>
+
+
+<!-- =====================================================
+     TOURNAMENT LIST
+===================================================== -->
+
+<div class="card">
+
+<h2>🎮 Available Tournaments</h2>
+
+<input
+  class="search"
+  id="tournamentSearch"
+  type="text"
+  placeholder="🔎 Search tournament..."
+  oninput="renderTournaments()"
+>
+
+<div id="tournamentList" class="loading">
+Loading tournaments...
+</div>
+
+</div>
+
+
+<!-- =====================================================
+     PLAYERS
+===================================================== -->
+
+<div class="card">
+
+<h2>👥 Registered Players</h2>
+
+<select id="playerFilter" onchange="renderPlayers()">
+  <option value="">All Tournaments</option>
+</select>
+
+<div id="playerList" class="loading">
+Loading players...
+</div>
+
+</div>
+
+
+<!-- =====================================================
+     ADMIN LOGIN
+===================================================== -->
+
+<div class="card">
+
+<h2>🔐 Admin Panel</h2>
+
+<input
+  id="adminPin"
+  type="password"
+  placeholder="Enter Admin PIN"
+>
+
+<button onclick="adminLogin()">
+  🔐 Login Admin
+</button>
+
+<div id="adminMessage" class="message"></div>
+
+</div>
+
+
+<!-- =====================================================
+     ADMIN PANEL
+===================================================== -->
+
+<div id="adminPanel" class="admin">
+
+<div class="card">
+
+<h2 class="admin-title">
+🛠️ ADMIN CONTROL PANEL
+</h2>
+
+<select id="adminTournament">
+  <option value="">Select Tournament</option>
+</select>
+
+<button onclick="loadAdminTournament()">
+  📂 Load Tournament
+</button>
+
+<div id="adminControls" class="hidden">
+
+<hr>
+
+<h3>📢 Tournament Announcement</h3>
+
+<textarea
+  id="announcement"
+  placeholder="Example: Room ID 12345 hai. Match 8 PM par start hoga."
+></textarea>
+
+<button onclick="saveAnnouncement()">
+  📢 Save Announcement
+</button>
+
+
+<h3>🚪 Room Details</h3>
+
+<input
+  id="roomId"
+  type="text"
+  placeholder="Room ID"
+/>
+
+<input
+  id="roomPassword"
+  type="text"
+  placeholder="Room Password"
+/>
+
+<button onclick="saveRoomDetails()">
+  🚪 Save Room Details
+</button>
+
+
+<h3>📊 Tournament Status</h3>
+
+<select id="tournamentStatus">
+  <option value="Upcoming">Upcoming</option>
+  <option value="Live">Live</option>
+  <option value="Completed">Completed</option>
+</select>
+
+<button onclick="saveStatus()">
+  📊 Update Status
+</button>
+
+
+<h3>🥇 Declare Winner</h3>
+
+<input
+  id="winnerName"
+  type="text"
+  placeholder="Winner Name"
+/>
+
+<input
+  id="winnerUID"
+  type="text"
+  placeholder="Winner Game UID"
+/>
+
+<button onclick="declareWinner()">
+  🥇 Declare Winner
+</button>
+
+
+<h3>⚠️ Admin Logout</h3>
+
+<button
+  class="secondary"
+  onclick="adminLogout()"
+>
+  Logout Admin
+</button>
+
+<div id="adminActionMessage" class="message"></div>
+
+</div>
+
+</div>
+
+</div>
+
+
+<!-- =====================================================
+     FOOTER
+===================================================== -->
+
 <footer>
-  © 2026 BattleZone Tournament Platform
+© 2026 BattleZone Tournament Platform
 </footer>
 
 
-<!-- FIREBASE -->
+<!-- =====================================================
+     FIREBASE
+===================================================== -->
+
 <script src="https://www.gstatic.com/firebasejs/10.12.2/firebase-app-compat.js"></script>
+
 <script src="https://www.gstatic.com/firebasejs/10.12.2/firebase-firestore-compat.js"></script>
+
 
 <script>
 
-/* =========================================
+/* =====================================================
    FIREBASE CONFIG
-========================================= */
+===================================================== */
 
 const firebaseConfig = {
-  apiKey: "AIzaSyD3wpFyGO0x1aCblzlDey_qtT_Jvu7ZscY",
-  authDomain: "battlezone-ba07f.firebaseapp.com",
-  projectId: "battlezone-ba07f",
-  storageBucket: "battlezone-ba07f.firebasestorage.app",
-  messagingSenderId: "193110804088",
-  appId: "1:193110804088:web:6a1ddccc81cd785b1b4f8d"
+
+  apiKey:
+  "AIzaSyD3wpFyGO0x1aCblzlDey_qtT_Jvu7ZscY",
+
+  authDomain:
+  "battlezone-ba07f.firebaseapp.com",
+
+  projectId:
+  "battlezone-ba07f",
+
+  storageBucket:
+  "battlezone-ba07f.firebasestorage.app",
+
+  messagingSenderId:
+  "193110804088",
+
+  appId:
+  "1:193110804088:web:6a1ddccc81cd785b1b4f8d"
+
 };
 
-
-/* =========================================
-   INITIALIZE FIREBASE
-========================================= */
 
 firebase.initializeApp(firebaseConfig);
 
 const db = firebase.firestore();
 
 
-/* =========================================
-   MESSAGE FUNCTION
-========================================= */
+/* =====================================================
+   ADMIN PIN
+   CHANGE THIS PIN
+===================================================== */
 
-function showMessage(elementId, text, type){
+const ADMIN_PIN = "818190";
 
-  const element = document.getElementById(elementId);
 
-  element.innerText = text;
+/* =====================================================
+   GLOBAL DATA
+===================================================== */
 
-  element.className = "message " + type;
+let tournaments = [];
 
-  element.style.display = "block";
+let players = [];
+
+let selectedAdminTournament = null;
+
+
+/* =====================================================
+   MESSAGE
+===================================================== */
+
+function showMessage(id,text,type){
+
+  const el =
+    document.getElementById(id);
+
+  el.innerText = text;
+
+  el.className =
+    "message " + type;
+
+  el.style.display = "block";
 
   setTimeout(function(){
 
-    element.style.display = "none";
+    el.style.display = "none";
 
   },5000);
+
 }
 
 
-/* =========================================
+/* =====================================================
+   ESCAPE HTML
+===================================================== */
+
+function escapeHTML(value){
+
+  const div =
+    document.createElement("div");
+
+  div.textContent =
+    String(value ?? "");
+
+  return div.innerHTML;
+
+}
+
+
+/* =====================================================
    CREATE TOURNAMENT
-========================================= */
+===================================================== */
 
 async function createTournament(){
 
-  const tournamentName =
-    document.getElementById("tournamentName").value.trim();
+  const name =
+    document
+    .getElementById("tournamentName")
+    .value.trim();
 
-  const gameName =
-    document.getElementById("gameName").value.trim();
+  const game =
+    document
+    .getElementById("gameName")
+    .value.trim();
 
-  const entryFee =
-    document.getElementById("entryFee").value.trim();
+  const entry =
+    document
+    .getElementById("entryFee")
+    .value.trim();
 
-  const prizePool =
-    document.getElementById("prizePool").value.trim();
+  const prize =
+    document
+    .getElementById("prizePool")
+    .value.trim();
 
-  const tournamentType =
-    document.getElementById("tournamentType").value;
+  const type =
+    document
+    .getElementById("tournamentType")
+    .value;
 
 
-  /* VALIDATION */
-
-  if(!tournamentName){
+  if(!name){
 
     showMessage(
       "tournamentMessage",
-      "❌ Tournament Name enter karo!",
+      "❌ Tournament Name enter karo.",
       "error"
     );
 
@@ -436,11 +720,11 @@ async function createTournament(){
   }
 
 
-  if(!gameName){
+  if(!game){
 
     showMessage(
       "tournamentMessage",
-      "❌ Game Name enter karo!",
+      "❌ Game Name enter karo.",
       "error"
     );
 
@@ -448,11 +732,11 @@ async function createTournament(){
   }
 
 
-  if(entryFee === ""){
+  if(entry === ""){
 
     showMessage(
       "tournamentMessage",
-      "❌ Entry Fee enter karo!",
+      "❌ Entry Fee enter karo.",
       "error"
     );
 
@@ -460,11 +744,11 @@ async function createTournament(){
   }
 
 
-  if(prizePool === ""){
+  if(prize === ""){
 
     showMessage(
       "tournamentMessage",
-      "❌ Prize Pool enter karo!",
+      "❌ Prize Pool enter karo.",
       "error"
     );
 
@@ -472,11 +756,11 @@ async function createTournament(){
   }
 
 
-  if(!tournamentType){
+  if(!type){
 
     showMessage(
       "tournamentMessage",
-      "❌ Tournament Type select karo!",
+      "❌ Tournament Type select karo.",
       "error"
     );
 
@@ -486,21 +770,41 @@ async function createTournament(){
 
   try{
 
-    await db.collection("tournaments").add({
+    await db
+      .collection("tournaments")
+      .add({
 
-      tournamentName: tournamentName,
+        tournamentName:name,
 
-      gameName: gameName,
+        gameName:game,
 
-      entryFee: Number(entryFee),
+        entryFee:Number(entry),
 
-      prizePool: Number(prizePool),
+        prizePool:Number(prize),
 
-      tournamentType: tournamentType,
+        tournamentType:type,
 
-      createdAt: firebase.firestore.FieldValue.serverTimestamp()
+        status:"Upcoming",
 
-    });
+        roomId:"",
+
+        roomPassword:"",
+
+        announcement:"",
+
+        winnerName:"",
+
+        winnerUID:"",
+
+        playerCount:0,
+
+        createdAt:
+          firebase
+          .firestore
+          .FieldValue
+          .serverTimestamp()
+
+      });
 
 
     showMessage(
@@ -510,17 +814,25 @@ async function createTournament(){
     );
 
 
-    /* CLEAR FORM */
+    document
+      .getElementById("tournamentName")
+      .value="";
 
-    document.getElementById("tournamentName").value = "";
+    document
+      .getElementById("gameName")
+      .value="";
 
-    document.getElementById("gameName").value = "";
+    document
+      .getElementById("entryFee")
+      .value="";
 
-    document.getElementById("entryFee").value = "";
+    document
+      .getElementById("prizePool")
+      .value="";
 
-    document.getElementById("prizePool").value = "";
-
-    document.getElementById("tournamentType").value = "";
+    document
+      .getElementById("tournamentType")
+      .value="";
 
   }
 
@@ -539,32 +851,38 @@ async function createTournament(){
 }
 
 
-/* =========================================
+/* =====================================================
    REGISTER PLAYER
-========================================= */
+===================================================== */
 
 async function registerPlayer(){
 
-  const playerName =
-    document.getElementById("playerName").value.trim();
+  const name =
+    document
+    .getElementById("playerName")
+    .value.trim();
 
-  const gameUID =
-    document.getElementById("gameUID").value.trim();
+  const uid =
+    document
+    .getElementById("gameUID")
+    .value.trim();
 
-  const mobileNumber =
-    document.getElementById("mobileNumber").value.trim();
+  const mobile =
+    document
+    .getElementById("mobileNumber")
+    .value.trim();
 
   const tournamentId =
-    document.getElementById("playerTournament").value;
+    document
+    .getElementById("playerTournament")
+    .value;
 
 
-  /* VALIDATION */
-
-  if(!playerName){
+  if(!name){
 
     showMessage(
       "playerMessage",
-      "❌ Player Name enter karo!",
+      "❌ Player Name enter karo.",
       "error"
     );
 
@@ -572,11 +890,11 @@ async function registerPlayer(){
   }
 
 
-  if(!gameUID){
+  if(!uid){
 
     showMessage(
       "playerMessage",
-      "❌ Game UID enter karo!",
+      "❌ Game UID enter karo.",
       "error"
     );
 
@@ -584,23 +902,11 @@ async function registerPlayer(){
   }
 
 
-  if(!mobileNumber){
+  if(!/^[0-9]{10}$/.test(mobile)){
 
     showMessage(
       "playerMessage",
-      "❌ Mobile Number enter karo!",
-      "error"
-    );
-
-    return;
-  }
-
-
-  if(!/^[0-9]{10}$/.test(mobileNumber)){
-
-    showMessage(
-      "playerMessage",
-      "❌ 10 digit mobile number enter karo!",
+      "❌ Valid 10 digit mobile number enter karo.",
       "error"
     );
 
@@ -612,7 +918,7 @@ async function registerPlayer(){
 
     showMessage(
       "playerMessage",
-      "❌ Tournament select karo!",
+      "❌ Tournament select karo.",
       "error"
     );
 
@@ -622,10 +928,9 @@ async function registerPlayer(){
 
   try{
 
-    /* GET TOURNAMENT */
-
     const tournamentDoc =
-      await db.collection("tournaments")
+      await db
+      .collection("tournaments")
       .doc(tournamentId)
       .get();
 
@@ -634,7 +939,7 @@ async function registerPlayer(){
 
       showMessage(
         "playerMessage",
-        "❌ Tournament nahi mila!",
+        "❌ Tournament nahi mila.",
         "error"
       );
 
@@ -646,28 +951,90 @@ async function registerPlayer(){
       tournamentDoc.data();
 
 
-    /* SAVE PLAYER */
+    if(tournament.status === "Completed"){
 
-    await db.collection("players").add({
+      showMessage(
+        "playerMessage",
+        "❌ Ye tournament complete ho chuka hai.",
+        "error"
+      );
 
-      playerName: playerName,
+      return;
+    }
 
-      gameUID: gameUID,
 
-      mobileNumber: mobileNumber,
+    /*
+      DUPLICATE UID CHECK
+    */
 
-      tournamentId: tournamentId,
+    const duplicate =
+      await db
+      .collection("players")
+      .where("tournamentId","==",tournamentId)
+      .where("gameUID","==",uid)
+      .limit(1)
+      .get();
 
-      tournamentName:
-        tournament.tournamentName || "",
 
-      gameName:
-        tournament.gameName || "",
+    if(!duplicate.empty){
 
-      registeredAt:
-        firebase.firestore.FieldValue.serverTimestamp()
+      showMessage(
+        "playerMessage",
+        "❌ Ye Game UID already registered hai.",
+        "error"
+      );
 
-    });
+      return;
+    }
+
+
+    /*
+      ADD PLAYER
+    */
+
+    await db
+      .collection("players")
+      .add({
+
+        playerName:name,
+
+        gameUID:uid,
+
+        mobileNumber:mobile,
+
+        tournamentId:tournamentId,
+
+        tournamentName:
+          tournament.tournamentName || "",
+
+        gameName:
+          tournament.gameName || "",
+
+        registeredAt:
+          firebase
+          .firestore
+          .FieldValue
+          .serverTimestamp()
+
+      });
+
+
+    /*
+      INCREASE PLAYER COUNT
+    */
+
+    await db
+      .collection("tournaments")
+      .doc(tournamentId)
+      .update({
+
+        playerCount:
+          firebase
+          .firestore
+          .FieldValue
+          .increment(1)
+
+      });
 
 
     showMessage(
@@ -677,15 +1044,21 @@ async function registerPlayer(){
     );
 
 
-    /* CLEAR FORM */
+    document
+      .getElementById("playerName")
+      .value="";
 
-    document.getElementById("playerName").value = "";
+    document
+      .getElementById("gameUID")
+      .value="";
 
-    document.getElementById("gameUID").value = "";
+    document
+      .getElementById("mobileNumber")
+      .value="";
 
-    document.getElementById("mobileNumber").value = "";
-
-    document.getElementById("playerTournament").value = "";
+    document
+      .getElementById("playerTournament")
+      .value="";
 
   }
 
@@ -704,9 +1077,9 @@ async function registerPlayer(){
 }
 
 
-/* =========================================
+/* =====================================================
    LOAD TOURNAMENTS
-========================================= */
+===================================================== */
 
 function loadTournaments(){
 
@@ -716,91 +1089,25 @@ function loadTournaments(){
 
       function(snapshot){
 
-        const list =
-          document.getElementById("tournamentList");
-
-        const select =
-          document.getElementById("playerTournament");
-
-
-        list.innerHTML = "";
-
-        select.innerHTML =
-          '<option value="">Select Tournament</option>';
-
-
-        if(snapshot.empty){
-
-          list.innerHTML =
-            '<div class="empty">No tournaments available.</div>';
-
-          return;
-        }
+        tournaments=[];
 
 
         snapshot.forEach(function(doc){
 
-          const data = doc.data();
+          tournaments.push({
 
+            id:doc.id,
 
-          /* TOURNAMENT CARD */
+            ...doc.data()
 
-          const card =
-            document.createElement("div");
-
-          card.className = "tournament";
-
-
-          card.innerHTML = `
-
-            <span class="badge">
-              ${escapeHTML(data.tournamentType || "Tournament")}
-            </span>
-
-            <h3>
-              🏆 ${escapeHTML(data.tournamentName || "Tournament")}
-            </h3>
-
-            <div class="info">
-              🎮 Game:
-              <b>${escapeHTML(data.gameName || "-")}</b>
-            </div>
-
-            <div class="info">
-              💰 Entry:
-              <b>₹${data.entryFee ?? 0}</b>
-            </div>
-
-            <div class="info">
-              🏆 Prize:
-              <b>₹${data.prizePool ?? 0}</b>
-            </div>
-
-            <div class="info">
-              👥 Type:
-              <b>${escapeHTML(data.tournamentType || "-")}</b>
-            </div>
-
-          `;
-
-
-          list.appendChild(card);
-
-
-          /* DROPDOWN OPTION */
-
-          const option =
-            document.createElement("option");
-
-          option.value = doc.id;
-
-          option.textContent =
-            `${data.tournamentName || "Tournament"} - ${data.gameName || ""}`;
-
-
-          select.appendChild(option);
+          });
 
         });
+
+
+        updateTournamentDropdowns();
+
+        renderTournaments();
 
       },
 
@@ -808,8 +1115,10 @@ function loadTournaments(){
 
         console.error(error);
 
-        document.getElementById("tournamentList").innerHTML =
-          '<div class="empty">❌ Tournament load nahi ho pa raha.</div>';
+        document
+          .getElementById("tournamentList")
+          .innerHTML =
+          '<div class="empty">❌ Tournament load error.</div>';
 
       }
 
@@ -818,121 +1127,226 @@ function loadTournaments(){
 }
 
 
-/* =========================================
-   LOAD PLAYERS
-========================================= */
+/* =====================================================
+   TOURNAMENT DROPDOWNS
+===================================================== */
 
-function loadPlayers(){
+function updateTournamentDropdowns(){
 
-  db.collection("players")
-    .orderBy("registeredAt","desc")
-    .onSnapshot(
+  const playerSelect =
+    document
+    .getElementById("playerTournament");
 
-      function(snapshot){
+  const filterSelect =
+    document
+    .getElementById("playerFilter");
 
-        const list =
-          document.getElementById("playerList");
-
-
-        list.innerHTML = "";
-
-
-        if(snapshot.empty){
-
-          list.innerHTML =
-            '<div class="empty">No players registered.</div>';
-
-          return;
-        }
+  const adminSelect =
+    document
+    .getElementById("adminTournament");
 
 
-        snapshot.forEach(function(doc){
+  playerSelect.innerHTML =
+    '<option value="">Select Tournament</option>';
 
-          const data =
-            doc.data();
+  filterSelect.innerHTML =
+    '<option value="">All Tournaments</option>';
 
-
-          const card =
-            document.createElement("div");
-
-          card.className = "player";
+  adminSelect.innerHTML =
+    '<option value="">Select Tournament</option>';
 
 
-          card.innerHTML = `
+  tournaments.forEach(function(t){
 
-            <h3>
-              👤 ${escapeHTML(data.playerName || "Player")}
-            </h3>
-
-            <p>
-              🎮 Game UID:
-              <b>${escapeHTML(data.gameUID || "-")}</b>
-            </p>
-
-            <p>
-              🏆 Tournament:
-              <b>${escapeHTML(data.tournamentName || "-")}</b>
-            </p>
-
-            <p>
-              🎮 Game:
-              <b>${escapeHTML(data.gameName || "-")}</b>
-            </p>
-
-            <p>
-              📱 Mobile:
-              <b>${escapeHTML(data.mobileNumber || "-")}</b>
-            </p>
-
-          `;
+    const text =
+      `${t.tournamentName || "Tournament"} - ${t.gameName || ""}`;
 
 
-          list.appendChild(card);
+    const option1 =
+      document.createElement("option");
 
-        });
+    option1.value=t.id;
 
-      },
+    option1.textContent=text;
 
-      function(error){
+    playerSelect.appendChild(option1);
 
-        console.error(error);
 
-        document.getElementById("playerList").innerHTML =
-          '<div class="empty">❌ Players load nahi ho rahe.</div>';
+    const option2 =
+      document.createElement("option");
 
-      }
+    option2.value=t.id;
 
-    );
+    option2.textContent=text;
+
+    filterSelect.appendChild(option2);
+
+
+    const option3 =
+      document.createElement("option");
+
+    option3.value=t.id;
+
+    option3.textContent=text;
+
+    adminSelect.appendChild(option3);
+
+  });
 
 }
 
 
-/* =========================================
-   SECURITY HELPER
-========================================= */
+/* =====================================================
+   RENDER TOURNAMENTS
+===================================================== */
 
-function escapeHTML(value){
+function renderTournaments(){
 
-  const div =
-    document.createElement("div");
-
-  div.textContent =
-    String(value);
-
-  return div.innerHTML;
-
-}
+  const list =
+    document
+    .getElementById("tournamentList");
 
 
-/* =========================================
-   START
-========================================= */
+  const search =
+    document
+    .getElementById("tournamentSearch")
+    .value
+    .toLowerCase()
+    .trim();
 
-loadTournaments();
 
-loadPlayers();
+  list.innerHTML="";
 
-</script>
 
-</body>
-</html>
+  const filtered =
+    tournaments.filter(function(t){
+
+      const text =
+        (
+          (t.tournamentName || "") +
+          " " +
+          (t.gameName || "") +
+          " " +
+          (t.tournamentType || "")
+        ).toLowerCase();
+
+
+      return text.includes(search);
+
+    });
+
+
+  if(filtered.length===0){
+
+    list.innerHTML =
+      '<div class="empty">No tournaments found.</div>';
+
+    return;
+
+  }
+
+
+  filtered.forEach(function(t){
+
+    const status =
+      t.status || "Upcoming";
+
+
+    let badgeClass="";
+
+    if(status==="Live"){
+      badgeClass="live";
+    }
+
+    if(status==="Completed"){
+      badgeClass="completed";
+    }
+
+
+    let roomHTML="";
+
+
+    if(status==="Live" && t.roomId){
+
+      roomHTML=`
+
+        <div class="room">
+
+          <b>🚪 ROOM DETAILS</b>
+
+          <div class="info">
+            Room ID:
+            <b>${escapeHTML(t.roomId)}</b>
+          </div>
+
+          <div class="info">
+            Password:
+            <b>${escapeHTML(t.roomPassword || "-")}</b>
+          </div>
+
+        </div>
+
+      `;
+
+    }
+
+
+    let announcementHTML="";
+
+
+    if(t.announcement){
+
+      announcementHTML=`
+
+        <div class="info">
+          📢
+          <b>Announcement:</b><br>
+          ${escapeHTML(t.announcement)}
+        </div>
+
+      `;
+
+    }
+
+
+    let winnerHTML="";
+
+
+    if(t.winnerName){
+
+      winnerHTML=`
+
+        <div class="winner">
+
+          <div>🏆 WINNER</div>
+
+          <h3>
+            🥇 ${escapeHTML(t.winnerName)}
+          </h3>
+
+          <div>
+            Game UID:
+            <b>${escapeHTML(t.winnerUID || "-")}</b>
+          </div>
+
+        </div>
+
+      `;
+
+    }
+
+
+    const card =
+      document.createElement("div");
+
+    card.className="tournament";
+
+
+    card.innerHTML=`
+
+      <span class="badge ${badgeClass}">
+        ${escapeHTML(status)}
+      </span>
+
+      <h3>
+       
